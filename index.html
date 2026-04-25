@@ -60,6 +60,12 @@
       gap:12px;
       color:#fff;
     }
+    .logo-block svg,.logo-block img{width:350px;height:auto;flex:0 0 auto;max-width:100%}
+    .brand-image{
+      display:block;
+      object-fit:contain;
+      filter:drop-shadow(0 6px 16px rgba(0,0,0,.18));
+    }
     .logo-block svg{width:350px;height:88px;flex:0 0 auto;max-width:100%}
     .brand-badge{filter:drop-shadow(0 6px 16px rgba(0,0,0,.18))}
     .credits{font-weight:700; color:#dbeafe; display:grid; gap:4px; margin-bottom:8px;}
@@ -122,7 +128,7 @@
     .footer-note{text-align:center; color:#3c6b72; font-size:13px; margin-top:12px}
     @media(max-width:760px){
       .header-top{flex-direction:column}
-      .logo-block svg{width:min(340px,92vw);height:auto}
+      .logo-block svg,.logo-block img{width:min(340px,92vw);height:auto}
       .start-grid,.writing-grid{grid-template-columns:1fr}
       .stats-grid,.charts{grid-template-columns:1fr}
       .q-text{font-size:19px}
@@ -148,21 +154,13 @@
       <header>
         <div class="header-top">
           <div class="logo-block">
-            <svg class="brand-badge" viewBox="0 0 780 180" aria-label="شعار المدرسة ووزارة التعليم" role="img">
-              <rect x="1" y="1" width="778" height="178" rx="24" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
-              <text x="58" y="86" fill="#fff" font-size="56" font-weight="700" font-family="Tajawal">المدرسة الخامسة الابتدائية بالظهران</text>
-              <text x="274" y="140" fill="#fff" font-size="56" font-weight="700" font-family="Tajawal">قسم الوعي الفكري</text>
-              <g fill="#fff" opacity=".92">
-                <circle cx="522" cy="42" r="8"/><circle cx="546" cy="35" r="7"/><circle cx="570" cy="32" r="6"/><circle cx="594" cy="30" r="5"/><circle cx="618" cy="30" r="5"/>
-                <circle cx="524" cy="66" r="7"/><circle cx="548" cy="61" r="6"/><circle cx="572" cy="57" r="6"/><circle cx="596" cy="54" r="5"/><circle cx="620" cy="54" r="5"/>
-                <circle cx="524" cy="90" r="6"/><circle cx="548" cy="86" r="6"/><circle cx="572" cy="83" r="5"/><circle cx="596" cy="80" r="5"/><circle cx="620" cy="80" r="5"/>
-                <circle cx="733" cy="42" r="8"/><circle cx="709" cy="35" r="7"/><circle cx="685" cy="32" r="6"/><circle cx="661" cy="30" r="5"/><circle cx="637" cy="30" r="5"/>
-                <circle cx="731" cy="66" r="7"/><circle cx="707" cy="61" r="6"/><circle cx="683" cy="57" r="6"/><circle cx="659" cy="54" r="5"/><circle cx="635" cy="54" r="5"/>
-                <circle cx="731" cy="90" r="6"/><circle cx="707" cy="86" r="6"/><circle cx="683" cy="83" r="5"/><circle cx="659" cy="80" r="5"/><circle cx="635" cy="80" r="5"/>
-              </g>
-              <rect x="626" y="24" width="3.5" height="76" fill="#fff"/>
-              <text x="678" y="134" fill="#fff" text-anchor="middle" font-size="48" font-family="Tajawal">وزارة التعليم</text>
-            </svg>
+            <img
+              class="brand-image"
+              src="https://raw.githubusercontent.com/edu-hup/Test1/main/shoolest.png"
+              alt="شعار المدرسة الخامسة الابتدائية بالظهران - قسم الوعي الفكري"
+              loading="eager"
+              decoding="async"
+            />
           </div>
           <div class="credits">
             <div>إعداد منسقة الوعي الفكري / معالي بنت إبراهيم المزين</div>
