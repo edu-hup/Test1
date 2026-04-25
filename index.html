@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>إعداد منسقة الوعي الفكري / معالي بنت إبراهيم المزين | إشراف مدير المدرسة الخامسة الابتدائية بالظهران / مشاعل بنت نائف العتيبي | اختبار الفرق بين التاء المربوطة والهاء</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;700&display=swap');
+
     :root{
       --bg:#f1f8f7;
       --card:#fff;
@@ -18,18 +20,37 @@
       --gold:#b9a578;
       --border:#cfe3df;
       --soft:#e9f5f3;
+      --headings-font:"Cairo", "Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
+      --body-font:"Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:"Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
+      font-family:var(--body-font);
       background:
         radial-gradient(circle at top right, #dcf5f1 0, transparent 30%),
         radial-gradient(circle at bottom left, #cde8f6 0, transparent 24%),
         var(--bg);
       color:var(--ink);
       min-height:100vh;
+      font-size:1rem;
       line-height:1.8;
+      letter-spacing:.01em;
+    }
+    h1,h2,h3,h4,h5,h6{
+      font-family:var(--headings-font);
+      letter-spacing:.015em;
+      margin-top:0;
+    }
+    h1{font-size:2.5rem; font-weight:700; line-height:1.35}
+    h2{font-size:2rem; font-weight:700; line-height:1.35}
+    h3{font-size:1.5rem; font-weight:600; line-height:1.4}
+    h4{font-size:1.25rem; font-weight:600; line-height:1.45}
+    h5{font-size:1.1rem; font-weight:600; line-height:1.5}
+    h6{font-size:1rem; font-weight:600; line-height:1.5}
+    p,li,td,th,small,span,div,label,input,select,textarea,button{
+      font-family:var(--body-font);
+      letter-spacing:.01em;
     }
     .wrap{width:min(1050px,95vw); margin:0 auto; padding:24px 0 44px;}
     .card{
@@ -69,15 +90,15 @@
     .logo-block svg{width:350px;height:88px;flex:0 0 auto;max-width:100%}
     .brand-badge{filter:drop-shadow(0 6px 16px rgba(0,0,0,.18))}
     .credits{font-weight:700; color:#dbeafe; display:grid; gap:4px; margin-bottom:8px;}
-    h1{margin:0; font-size:clamp(23px,3.4vw,35px); line-height:1.4}
-    .subtitle{margin:8px 0 0; color:#dbeafe; font-size:16px}
+    h1{margin:0}
+    .subtitle{margin:8px 0 0; color:#dbeafe; font-size:1rem; font-weight:400}
     .content{padding:22px}
     .start-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0 18px;}
     .field{border:1px solid var(--border); border-radius:14px; padding:10px 12px; background:#f8fbff}
-    label{font-size:14px; color:var(--muted); display:block; margin-bottom:4px; font-weight:700}
-    input{width:100%; border:0; outline:0; font-size:16px; background:transparent; color:var(--ink); font-weight:700;}
+    label{font-size:1rem; color:var(--muted); display:block; margin-bottom:4px; font-weight:700}
+    input,select,textarea{width:100%; border:0; outline:0; font-size:1rem; background:transparent; color:var(--ink); font-weight:400;}
     .hint{background:var(--soft); border:1px solid #9ad5cb; color:#0b5f66; border-radius:14px; padding:12px 14px; font-weight:700;}
-    .btn{border:0; border-radius:12px; padding:11px 16px; font-size:16px; font-weight:900; cursor:pointer}
+    .btn{border:0; border-radius:12px; padding:11px 16px; font-size:1rem; font-weight:700; cursor:pointer}
     .btn.primary{background:var(--primary); color:#fff}
     .btn.primary:hover{background:var(--primary-dark)}
     .btn.secondary{background:#f1f7f7; color:#20525b; border:1px solid #c7ddda}
@@ -86,22 +107,22 @@
     #quizPanel,#resultPanel{display:none}
     .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:14px}
     .progress-wrap{flex:1 1 260px}
-    .progress-label{display:flex; justify-content:space-between; font-size:14px; color:var(--muted); margin-bottom:6px; font-weight:700}
+    .progress-label{display:flex; justify-content:space-between; font-size:1rem; color:var(--muted); margin-bottom:6px; font-weight:700}
     .progress{height:12px; border-radius:999px; background:#e2e8f0; overflow:hidden}
     .bar{height:100%; width:0%; background:linear-gradient(90deg,var(--primary),#60a5fa)}
     .score-pill{background:var(--soft); border:1px solid #9ad5cb; color:#0b5f66; border-radius:999px; padding:8px 14px; font-weight:900}
     .q-card{border:1px solid var(--border); border-radius:18px; padding:18px; background:#fff}
-    .section-tag{font-size:13px; color:#475569; font-weight:800; margin-bottom:6px}
+    .section-tag{font-size:.95rem; color:#475569; font-weight:700; margin-bottom:6px}
     .q-num{color:var(--primary); font-weight:900; margin-bottom:8px}
-    .q-text{font-size:21px; margin:0 0 14px; font-weight:900}
+    .q-text{font-size:1.5rem; margin:0 0 14px; font-weight:600; font-family:var(--headings-font)}
     .choices{display:grid; gap:10px}
-    .choice{display:flex; gap:10px; text-align:right; width:100%; border:1px solid var(--border); background:#fff; border-radius:14px; padding:11px 13px; font-size:17px; cursor:pointer}
+    .choice{display:flex; gap:10px; text-align:right; width:100%; border:1px solid var(--border); background:#fff; border-radius:14px; padding:11px 13px; font-size:1rem; font-weight:400; cursor:pointer}
     .choice:hover{background:#f4fbfa; border-color:#84cbc0}
     .choice.selected{background:#effcf9; border-color:var(--primary)}
     .mark{width:24px; height:24px; border-radius:50%; border:2px solid #cbd5e1; display:inline-flex; align-items:center; justify-content:center; font-weight:900; flex:0 0 auto; margin-top:2px}
     .actions{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-top:14px}
     .result-head{text-align:center}
-    .big-score{font-size:54px; color:var(--primary); margin:8px 0; font-weight:900}
+    .big-score{font-size:3.375rem; color:var(--primary); margin:8px 0; font-weight:700}
     .grade{display:inline-block; border-radius:999px; padding:8px 14px; font-weight:900; margin-bottom:12px}
     .excellent{background:#ecfdf5;color:#166534;border:1px solid #bbf7d0}
     .good{background:#eef9f8;color:#0b5f66;border:1px solid #9ad5cb}
@@ -110,11 +131,11 @@
     .item{border:1px solid var(--border); border-radius:12px; padding:11px; background:#fff}
     .stats-grid{display:grid; grid-template-columns:repeat(4,minmax(120px,1fr)); gap:10px; margin:16px 0}
     .stat{background:linear-gradient(180deg,#ffffff,#f1f8f7); border:1px solid var(--border); border-radius:14px; padding:12px; text-align:center}
-    .stat b{display:block; font-size:26px; color:#0d8f82; line-height:1.1}
-    .stat span{font-size:13px; color:var(--muted); font-weight:700}
+    .stat b{display:block; font-size:1.625rem; color:#0d8f82; line-height:1.1}
+    .stat span{font-size:.95rem; color:var(--muted); font-weight:700}
     .charts{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px}
     .chart-card{border:1px solid var(--border); border-radius:14px; padding:12px; background:#fff}
-    .chart-card h3{margin:0 0 10px; color:#0a6d72; font-size:16px}
+    .chart-card h3{margin:0 0 10px; color:#0a6d72}
     .chart-wrap{position:relative; width:100%; height:260px}
     canvas{width:100%; height:100%}
     .analysis{border:1px solid #9ad5cb; background:#e9f5f3; border-radius:14px; padding:12px; margin-top:12px}
@@ -125,14 +146,26 @@
     .writing{margin-top:18px; border:1px dashed #9fb3d9; border-radius:14px; padding:12px}
     .writing h3{margin:0 0 10px; color:#1e40af}
     .writing-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-    .footer-note{text-align:center; color:#3c6b72; font-size:13px; margin-top:12px}
+    .footer-note{text-align:center; color:#3c6b72; font-size:.9rem; margin-top:12px}
+    table{font-size:1rem}
+    @media(max-width:1024px){
+      body{font-size:.95rem}
+      h1{font-size:1.8rem}
+      h2{font-size:1.4rem}
+    }
     @media(max-width:760px){
       .header-top{flex-direction:column}
       .logo-block svg,.logo-block img{width:min(340px,92vw);height:auto}
       .start-grid,.writing-grid{grid-template-columns:1fr}
       .stats-grid,.charts{grid-template-columns:1fr}
-      .q-text{font-size:19px}
+      .q-text{font-size:1.2rem}
       .content,header{padding:18px}
+    }
+    @media(max-width:640px){
+      body{font-size:.85rem}
+      h1{font-size:1.5rem}
+      h2{font-size:1.2rem}
+      h3{font-size:1.05rem}
     }
     @page { size:A4; margin:12mm; }
     @media print{
