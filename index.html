@@ -168,216 +168,50 @@
     .print-head .logo-block{color:#166534}
     .report-actions{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px}
     .report-frame{
-      border:2px solid #d7e4e7;
-      border-radius:20px;
-      padding:16px;
-      background:#f4f5f6;
-      box-shadow:inset 0 0 0 1px #edf3f4;
-      margin-bottom:14px;
-    }
-    .report-head{
-      display:grid;
-      grid-template-columns:1fr 1.4fr 1fr;
-      align-items:center;
-      gap:14px;
-      margin-bottom:14px;
-    }
-    .exam-badge{
-      border:2px solid #c2c8ce;
-      border-radius:12px;
+      border:1px solid #c9ded8;
+      border-radius:18px;
       padding:14px;
-      text-align:center;
-      background:#fff;
-      font-size:1.6rem;
-      font-weight:700;
-      color:#3a3c41;
-      min-height:84px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .ministry-brand{text-align:center}
-    .ministry-brand img{width:min(250px,100%);height:auto;object-fit:contain}
-    .edu-meta{
-      text-align:center;
-      font-weight:700;
-      color:#3c4044;
-      line-height:1.6;
-      font-size:1.25rem;
-    }
-    .separator{border-top:2px solid #d5d8dc;margin:8px 0}
-    .report-title{
-      border:2px solid #2ca0db;
-      border-radius:12px;
-      padding:10px 14px;
-      margin:8px auto 18px;
-      max-width:78%;
-      text-align:center;
-      font-size:2rem;
-      color:#3d3f43;
-      font-family:var(--headings-font);
-      font-weight:700;
-      background:#fff;
-    }
-    .info-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
+      background:linear-gradient(180deg,#ffffff,#f6fbfa);
+      box-shadow:inset 0 0 0 1px #e7f1ee;
       margin-bottom:14px;
     }
-    .info-card{
-      border:2px solid #35b57e;
-      border-radius:16px;
+    .official-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:center;margin-bottom:10px}
+    .official-top .meta{font-weight:700;color:#0b5f66;line-height:1.6}
+    .official-title{text-align:center}
+    .official-title h2{margin:0;color:#0d6e73}
+    .official-title p{margin:0;color:#4e6e74;font-weight:700}
+    .identity-row{
+      border:1px solid #c9ded8;
+      border-radius:12px;
       padding:8px 12px;
-      text-align:center;
       background:#fff;
-    }
-    .info-card .label{color:#0faa72;font-size:1.2rem;font-weight:700;line-height:1.1}
-    .info-card .value{color:#3c4044;font-size:1.8rem;font-weight:700}
-    .section-title{
-      text-align:center;
-      color:#0faa72;
-      margin:10px 0 12px;
-      font-size:2rem;
-      font-family:var(--headings-font);
-      font-weight:700;
-    }
-    .stats-wrap{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin-bottom:16px;
-    }
-    .metrics-col{display:grid;gap:8px}
-    .metric-row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
-      align-items:center;
-    }
-    .metric-value,.metric-label{
-      border:2px solid #36a8df;
-      border-radius:14px;
-      min-height:56px;
-      background:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:1.8rem;
-      font-weight:700;
-      color:#404449;
-    }
-    .metric-label{color:#0faa72}
-    .levels-card{
-      border:2px solid #d6e5e8;
-      border-radius:16px;
-      background:#fff;
-      padding:12px;
-    }
-    .levels-table{width:100%;border-collapse:separate;border-spacing:0 8px}
-    .levels-table th{
-      color:#3d4348;
-      font-size:1.5rem;
+      color:#06363e;
       font-weight:700;
       text-align:center;
-      padding-bottom:4px;
+      margin-bottom:10px;
     }
-    .levels-table td{
-      text-align:center;
-      font-size:1.6rem;
-      font-weight:700;
-      padding:8px 4px;
-      color:#404449;
-    }
-    .level-badge{
-      color:#fff;
+    .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
+    .kpi{
+      border:1px solid #cfe3df;
       border-radius:12px;
-      min-width:130px;
-      display:inline-block;
-      padding:6px 10px;
-    }
-    .charts-box{
-      border:2px solid #36a8df;
-      border-radius:16px;
-      padding:12px;
+      padding:8px 10px;
       background:#fff;
-    }
-    .charts-head{
-      text-align:center;
-      color:#10a86e;
-      font-size:1.8rem;
-      margin:0 0 8px;
       font-weight:700;
+      color:#0a4f57;
     }
-    .ring-grid{
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:10px;
-      margin-bottom:14px;
-    }
-    .ring-item{text-align:center}
-    .ring{
-      width:145px;height:145px;border-radius:50%;
-      margin:0 auto 4px;
-      display:grid;place-items:center;
-      background:conic-gradient(var(--ring-color) calc(var(--pct) * 1%), #dae1ea 0);
-      position:relative;
-    }
-    .ring:before{
-      content:"";
-      position:absolute;inset:13px;border-radius:50%;
-      background:#fff;
-    }
-    .ring-label{
-      position:relative;z-index:1;
-      color:#354052;font-size:1rem;font-weight:700;line-height:1.4;
-    }
-    .bars-grid{
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:14px;
-      align-items:end;
-      min-height:230px;
-    }
-    .bar-item{text-align:center}
-    .bar-stack{
-      height:170px;
-      width:100%;
-      border-radius:12px;
-      background:#dbe2ec;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
+    .quality-bar{
+      border:1px solid #cfe3df;
+      border-radius:999px;
       overflow:hidden;
+      height:16px;
+      background:#eff5f4;
+      margin:8px 0;
     }
-    .bar-fill{
-      display:flex;align-items:flex-start;justify-content:center;
-      color:#2f3f55;
-      font-size:2rem;
-      font-weight:700;
-      padding-top:8px;
-      border-radius:12px 12px 0 0;
-    }
-    .bar-caption{font-size:2rem;color:#354052;font-weight:700;line-height:1.2;margin-top:4px}
-    .sign-row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      margin-top:14px;
-      font-size:2rem;
-      color:#3f4247;
-      font-weight:700;
-      text-align:center;
-    }
-    .report-footer{
-      margin:18px -16px -16px;
-      background:#1f4e67;
-      color:#fff;
-      text-align:center;
-      font-size:2rem;
-      font-weight:700;
-      padding:10px 12px;
-      border-radius:0 0 18px 18px;
-    }
+    .quality-bar span{display:block;height:100%;background:linear-gradient(90deg,#de4d4d,#f59e0b,#10b981)}
+    .criteria-table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px}
+    .criteria-table th{background:#0f8578;color:#fff;padding:8px}
+    .criteria-table td{border:1px solid #d9e8e5;padding:7px;background:#fff}
+    .criteria-table tr:nth-child(even) td{background:#f8fcfb}
     .share-prompt{display:none;border:1px solid #9ad5cb;background:#f0fbf9;border-radius:12px;padding:10px;margin-top:10px}
     .share-prompt.active{display:block}
     .share-options{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
@@ -395,8 +229,8 @@
       .header-top{flex-direction:column}
       .logo-block svg,.logo-block img{width:min(340px,92vw);height:auto}
       .start-grid,.writing-grid{grid-template-columns:1fr}
-      .report-head,.info-grid,.stats-wrap,.sign-row{grid-template-columns:1fr}
-      .ring-grid,.bars-grid{grid-template-columns:repeat(2,1fr)}
+      .official-top,.kpi-row{grid-template-columns:1fr}
+      .stats-grid,.charts{grid-template-columns:1fr}
       .q-text{font-size:1.2rem}
       .content,header{padding:18px}
     }
@@ -416,8 +250,7 @@
       .content{padding:0}
       .print-head{gap:8mm;border:0;border-bottom:1px solid var(--gold);border-radius:0;padding:0 0 4mm;margin-bottom:4mm}
       .item,.chart-card,.stat,.analysis,.writing{break-inside:avoid}
-      .report-frame{background:#f4f5f6}
-      .report-title{max-width:92%}
+      .charts{grid-template-columns:1fr 1fr}
     }
   </style>
 </head>
@@ -493,55 +326,48 @@
 
       <section class="content" id="resultPanel">
         <div class="report-frame" id="exportReport">
-          <div class="report-head">
-            <div class="edu-meta" id="reportOrgBlock">الإدارة العامة للتعليم<br>بالمنطقة<br>مدرسة</div>
-            <div class="ministry-brand">
-              <img src="https://raw.githubusercontent.com/edu-hup/Test1/main/shoolest.png" alt="شعار وزارة التعليم">
+          <div class="official-top">
+            <div class="meta" id="reportDateBlock"></div>
+            <div class="official-title">
+              <h2>وزارة التعليم</h2>
+              <p>نموذج تقرير تقييم الأداء</p>
             </div>
-            <div class="exam-badge">الاختبار النهائي</div>
+            <div class="meta" id="reportOrgBlock">الإدارة العامة للتعليم بالمنطقة الشرقية<br>اسم المدرسة: المدرسة الخامسة الابتدائية بالظهران</div>
           </div>
-          <div class="separator"></div>
-          <div class="report-title">تحليل نتائج اختبار مادة [الرياضيات]</div>
-          <div class="info-grid">
-            <article class="info-card">
-              <div class="label">المرحلة الدراسية / الصف:</div>
-              <div class="value" id="resultClassValue">ثاني متوسط / ٢</div>
-            </article>
-            <article class="info-card">
-              <div class="label">السنة / الفصل الدراسي:</div>
-              <div class="value" id="resultSemesterValue">الفصل الأول / ١٤٤٧هـ</div>
-            </article>
-            <article class="info-card">
-              <div class="label">درجة القياس (الاختبار):</div>
-              <div class="value" id="finalScore">0</div>
-            </article>
+          <div class="identity-row" id="resultName"></div>
+          <div class="result-head">
+            <div class="big-score" id="finalScore"></div>
+            <div class="grade" id="grade"></div>
+            <p id="resultMsg"></p>
           </div>
-          <div class="separator"></div>
-          <h3 class="section-title">الإحصائيات التفصيلية</h3>
-          <div class="stats-wrap">
-            <section class="metrics-col" id="statsGrid"></section>
-            <section class="levels-card">
-              <table class="levels-table">
-                <thead>
-                  <tr><th>المستوى</th><th>النطاق</th><th>عدد الطلاب</th></tr>
-                </thead>
-                <tbody id="criteriaBody"></tbody>
-              </table>
-            </section>
-          </div>
-          <section class="charts-box">
-            <h3 class="charts-head">رسم بياني (نسب الطلاب لكل تقدير)</h3>
-            <div class="ring-grid" id="ringGrid"></div>
-            <h3 class="charts-head">رسم بياني (عدد الطلاب لكل تقدير)</h3>
-            <div class="bars-grid" id="barGrid"></div>
-          </section>
-          <div class="sign-row">
-            <div>معلم المادة/ الاسم</div>
-            <div>مدير المدرسة/ الاسم</div>
-          </div>
-          <div class="report-footer">www.edu-forms.com - موقع نماذج تعليمية</div>
+          <div class="kpi-row" id="statsGrid"></div>
+          <div><b>مؤشر الإنجاز</b></div>
+          <div class="quality-bar"><span id="qualityBarFill" style="width:0%"></span></div>
+          <table class="criteria-table">
+            <thead>
+              <tr>
+                <th>عناصر التقييم</th>
+                <th>نسبة الإنجاز</th>
+                <th>الإجابات الصحيحة</th>
+                <th>عدد الأسئلة</th>
+              </tr>
+            </thead>
+            <tbody id="criteriaBody"></tbody>
+          </table>
 
-          <div class="writing" style="display:none;">
+          <section class="charts">
+            <article class="chart-card">
+              <h3>توزيع الإجابات</h3>
+              <div class="chart-wrap"><canvas id="distributionChart"></canvas></div>
+            </article>
+            <article class="chart-card">
+              <h3>الأداء حسب قسم الاختبار</h3>
+              <div class="chart-wrap"><canvas id="sectionChart"></canvas></div>
+            </article>
+          </section>
+          <section class="analysis" id="analysis"></section>
+
+          <div class="writing">
             <h3>نشاط كتابي (السؤال الخامس - غير محسوب في الدرجة)</h3>
             <div class="writing-grid">
               <div class="field"><label>كلمة تنتهي بـ (ـة)</label><input /></div>
@@ -553,7 +379,7 @@
             </div>
           </div>
 
-          <div class="review" id="review" style="display:none;"></div>
+          <div class="review" id="review"></div>
         </div>
         <div class="report-actions">
           <button class="btn primary" id="printBtn">طباعة / حفظ PDF (A4)</button>
@@ -638,7 +464,10 @@
     const bar = document.getElementById('bar');
     const liveScore = document.getElementById('liveScore');
 
+    const resultName = document.getElementById('resultName');
     const finalScore = document.getElementById('finalScore');
+    const grade = document.getElementById('grade');
+    const resultMsg = document.getElementById('resultMsg');
     const review = document.getElementById('review');
     const retryBtn = document.getElementById('retryBtn');
     const printBtn = document.getElementById('printBtn');
@@ -649,9 +478,12 @@
     const shareEmailBtn = document.getElementById('shareEmailBtn');
     const exportReport = document.getElementById('exportReport');
     const criteriaBody = document.getElementById('criteriaBody');
+    const qualityBarFill = document.getElementById('qualityBarFill');
+    const reportDateBlock = document.getElementById('reportDateBlock');
     const statsGrid = document.getElementById('statsGrid');
-    const ringGrid = document.getElementById('ringGrid');
-    const barGrid = document.getElementById('barGrid');
+    const analysis = document.getElementById('analysis');
+    const distributionChart = document.getElementById('distributionChart');
+    const sectionChart = document.getElementById('sectionChart');
     let cachedJpgBlob = null;
     let autoAdvance = true;
 
@@ -743,55 +575,210 @@
       const unanswered = questions.length - answered;
       quizPanel.style.display = 'none';
       resultPanel.style.display = 'block';
-      finalScore.textContent = `${s}`;
+      resultName.textContent = `الاسم: ${testerName.value.trim()} | التاريخ: ${quizDate.value}`;
+      reportDateBlock.innerHTML = `التاريخ: ${quizDate.value}<br>اليوم: ${new Date().toLocaleDateString('ar-SA', { weekday: 'long' })}<br>نوع التقرير: ختامي`;
+      finalScore.textContent = `${s} / ${questions.length}`;
+      qualityBarFill.style.width = `${pct}%`;
       cachedJpgBlob = null;
-      const levelRows = [
-        {name:'ممتاز', range:'100 - 90', color:'#4dbc78'},
-        {name:'جيد جدًا', range:'89.99 - 80', color:'#3fb1b0'},
-        {name:'جيد', range:'79.99 - 70', color:'#4a94d5'},
-        {name:'مقبول', range:'69.99 - 60', color:'#ef8a34'},
-        {name:'ضعيف', range:'59.99 - 0', color:'#f16365'}
-      ];
-      const countByLevel = levelRows.map((_, i) => (i === (pct >= 90 ? 0 : pct >= 80 ? 1 : pct >= 70 ? 2 : pct >= 60 ? 3 : 4) ? 1 : 0));
-      const average = ((s / questions.length) * 40).toFixed(1);
-      const totalMarks = ((s / questions.length) * 800).toFixed(0);
+
+      grade.className = 'grade';
+      if (pct >= 90) {
+        grade.classList.add('excellent');
+        grade.textContent = 'ممتاز';
+        resultMsg.textContent = 'أداء متميز جدًا. إجاباتك دقيقة في معظم البطاقات.';
+      } else if (pct >= 70) {
+        grade.classList.add('good');
+        grade.textContent = 'جيد جدًا';
+        resultMsg.textContent = 'نتيجة جيدة جدًا، راجعي الأخطاء البسيطة لتعزيز الإتقان.';
+      } else {
+        grade.classList.add('needs');
+        grade.textContent = 'يحتاج إلى مراجعة';
+        resultMsg.textContent = 'يفضل مراجعة قاعدة التاء المربوطة والهاء ثم إعادة الاختبار.';
+      }
+
       statsGrid.innerHTML = `
-        <div class="metric-row"><div class="metric-value">١</div><div class="metric-label">عدد الطلاب</div></div>
-        <div class="metric-row"><div class="metric-value">${s}</div><div class="metric-label">أعلى درجة</div></div>
-        <div class="metric-row"><div class="metric-value">${wrong}</div><div class="metric-label">أقل درجة</div></div>
-        <div class="metric-row"><div class="metric-value">${average}</div><div class="metric-label">متوسط الدرجات</div></div>
-        <div class="metric-row"><div class="metric-value">%${pct}</div><div class="metric-label">نسبة التحصيل</div></div>
-        <div class="metric-row"><div class="metric-value">${totalMarks}</div><div class="metric-label">مجموع الدرجات</div></div>
+        <article class="kpi"><b>${pct}%</b><br><span>الدرجة النسبية</span></article>
+        <article class="kpi"><b>${s}</b><br><span>إجابات صحيحة</span></article>
+        <article class="kpi"><b>${wrong}</b><br><span>إجابات خاطئة</span></article>
+        <article class="kpi"><b>${unanswered}</b><br><span>غير مجابة</span></article>
       `;
-      criteriaBody.innerHTML = levelRows.map((row, idx) => `
-        <tr>
-          <td><span class="level-badge" style="background:${row.color}">${row.name}</span></td>
-          <td>${row.range}</td>
-          <td>${countByLevel[idx]}</td>
-        </tr>
-      `).join('');
-      ringGrid.innerHTML = levelRows.map((row, idx) => {
-        const count = countByLevel[idx];
-        const levelPct = count * 100;
-        return `<article class="ring-item">
-          <div class="ring" style="--pct:${levelPct};--ring-color:${row.color}">
-            <div class="ring-label">${row.name}<br>%${levelPct}</div>
-          </div>
-        </article>`;
-      }).join('');
-      const maxCount = Math.max(...countByLevel, 1);
-      barGrid.innerHTML = levelRows.map((row, idx) => {
-        const count = countByLevel[idx];
-        const height = Math.max(20, Math.round((count / maxCount) * 100));
-        return `<article class="bar-item">
-          <div class="bar-stack">
-            <div class="bar-fill" style="height:${height}%;background:${row.color}">${count || ''}</div>
-          </div>
-          <div class="bar-caption">${row.name}</div>
-        </article>`;
+
+      const completionPct = Math.round((answered / questions.length) * 100);
+      const wrongPct = answered ? Math.round((wrong / answered) * 100) : 0;
+      analysis.innerHTML = `
+        <h3>تحليل النتيجة</h3>
+        <ul>
+          <li>نسبة الإكمال: <b>${completionPct}%</b> (${answered} من ${questions.length}).</li>
+          <li>متوسط الدقة: <b>${pct}%</b> من كامل الاختبار.</li>
+          <li>متوسط الخطأ بين الإجابات المختارة: <b>${wrongPct}%</b>.</li>
+          <li>التوصية: ${pct >= 90 ? 'جاهزية ممتازة واستمرارية بنفس المستوى.' : pct >= 70 ? 'مستوى جيد جدًا مع تحسين النقاط الخاطئة.' : 'تحتاجين إلى مراجعة إضافية قبل إعادة الاختبار.'}</li>
+        </ul>
+      `;
+
+      drawDistributionChart({correct:s, wrong, unanswered});
+      drawSectionChart(true);
+
+      review.innerHTML = questions.map((q, i) => {
+        const user = answers[i] === null ? 'لم يتم الاختيار' : q.choices[answers[i]];
+        const correct = q.choices[q.answer];
+        const ok = answers[i] === q.answer;
+        return `<div class="item"><strong>${i + 1}) ${q.q}</strong><br>
+        إجابتك: <span style="font-weight:900;color:${ok ? '#166534' : '#b91c1c'}">${user}</span><br>
+        الإجابة الصحيحة: <span style="font-weight:900">${correct}</span><br>
+        <small>${q.explain}</small></div>`;
       }).join('');
 
       window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function drawDistributionChart(data){
+      const ctx = distributionChart.getContext('2d');
+      const width = distributionChart.width = distributionChart.clientWidth * 2;
+      const height = distributionChart.height = distributionChart.clientHeight * 2;
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.scale(2,2);
+      const w = width / 2;
+      const h = height / 2;
+      ctx.clearRect(0,0,w,h);
+
+      const values = [data.correct, data.wrong, data.unanswered];
+      const labels = ['صحيحة','خاطئة','غير مجابة'];
+      const colors = ['#5d9b72','#1d2127','#b5c5b2'];
+      const total = Math.max(values.reduce((a,b)=>a+b,0),1);
+      let start = -Math.PI / 2;
+      const cardPad = 14;
+      const legendW = Math.min(230, w * 0.38);
+      const legendX = w - legendW - cardPad;
+      const donutAreaW = Math.max(180, legendX - cardPad * 2);
+      const cx = cardPad + donutAreaW * 0.52;
+      const cy = h * 0.5;
+      const r = Math.min(donutAreaW * 0.42, h * 0.36);
+      const ring = r * 0.44;
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, r + 12, 0, Math.PI * 2);
+      ctx.fillStyle = '#e7ece3';
+      ctx.fill();
+
+      values.forEach((v, i) => {
+        const angle = (v / total) * Math.PI * 2;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, start, start + angle);
+        ctx.arc(cx, cy, r - ring, start + angle, start, true);
+        ctx.closePath();
+        ctx.fillStyle = colors[i];
+        ctx.fill();
+        start += angle;
+      });
+
+      ctx.fillStyle = '#244330';
+      ctx.font = '700 16px Tajawal';
+      ctx.textAlign = 'center';
+      ctx.fillText('الدقة العامة', cx, cy - 8);
+      ctx.font = '900 27px Tajawal';
+      const accuracy = Math.round((data.correct / total) * 100);
+      ctx.fillText(`${accuracy}%`, cx, cy + 20);
+      ctx.textAlign = 'start';
+
+      labels.forEach((label, i) => {
+        const y = 48 + i * 58;
+        const percent = Math.round((values[i] / total) * 100);
+        ctx.fillStyle = '#f9fbf7';
+        ctx.strokeStyle = '#d6dfd3';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(legendX, y - 22, legendW, 40, 20);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = colors[i];
+        ctx.beginPath();
+        ctx.roundRect(legendX + 14, y - 10, 22, 22, 9);
+        ctx.fill();
+        ctx.fillStyle = '#21302a';
+        ctx.font = '700 20px Tajawal';
+        ctx.textAlign = 'right';
+        ctx.fillText(`${label}: ${values[i]} (${percent}%)`, legendX + legendW - 14, y + 5);
+        ctx.textAlign = 'start';
+      });
+    }
+
+    function drawSectionChart(fillTable = false){
+      const ctx = sectionChart.getContext('2d');
+      const width = sectionChart.width = sectionChart.clientWidth * 2;
+      const height = sectionChart.height = sectionChart.clientHeight * 2;
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.scale(2,2);
+      const w = width / 2;
+      const h = height / 2;
+      ctx.clearRect(0,0,w,h);
+
+      const grouped = questions.reduce((acc, q, i) => {
+        if (!acc[q.section]) acc[q.section] = {total:0, correct:0};
+        acc[q.section].total += 1;
+        if (answers[i] === q.answer) acc[q.section].correct += 1;
+        return acc;
+      }, {});
+      const labels = Object.keys(grouped);
+      if (fillTable) {
+        criteriaBody.innerHTML = labels.map((label, i) => {
+          const g = grouped[label];
+          const pctSection = g.total ? Math.round((g.correct / g.total) * 100) : 0;
+          return `<tr>
+            <td>${i + 1} - ${label}</td>
+            <td>${pctSection}%</td>
+            <td>${g.correct}</td>
+            <td>${g.total}</td>
+          </tr>`;
+        }).join('');
+      }
+      const panelX = 18;
+      const panelY = 18;
+      const panelW = w - 36;
+      const panelH = h - 36;
+      const rowGap = 22;
+      const rowH = (panelH - (labels.length + 1) * rowGap) / labels.length;
+      const barH = Math.min(18, Math.max(12, rowH * 0.36));
+      const left = panelX + 28;
+      const rightPad = 26;
+      const maxW = panelW - 56;
+      ctx.textAlign = 'right';
+
+      ctx.fillStyle = '#eff3ea';
+      ctx.beginPath();
+      ctx.roundRect(panelX, panelY, panelW, panelH, 14);
+      ctx.fill();
+
+      labels.forEach((label, i) => {
+        const y = panelY + rowGap + i * (rowH + rowGap) + 20;
+        const ratio = grouped[label].total ? grouped[label].correct / grouped[label].total : 0;
+        const barW = Math.max(6, Math.round(maxW * ratio));
+        const pct = Math.round(ratio*100);
+        const shortLabel = label.includes(':') ? label.split(':').slice(1).join(':').trim() : label;
+
+        ctx.fillStyle = '#c8d6c4';
+        ctx.beginPath();
+        ctx.roundRect(left, y, maxW, barH, 999);
+        ctx.fill();
+
+        ctx.fillStyle = '#8fb596';
+        ctx.beginPath();
+        ctx.roundRect(left, y, barW, barH, 999);
+        ctx.fill();
+
+        const darkSegment = Math.min(barW, Math.max(10, Math.round(barW * 0.28)));
+        ctx.fillStyle = '#1d2127';
+        ctx.beginPath();
+        ctx.roundRect(left + barW - darkSegment, y, darkSegment, barH, 999);
+        ctx.fill();
+
+        ctx.fillStyle = '#1e2e26';
+        ctx.font = '700 17px Tajawal';
+        ctx.fillText(shortLabel, left + maxW - rightPad, y - 12);
+        ctx.fillStyle = '#1d2127';
+        ctx.font = '900 22px Tajawal';
+        ctx.fillText(`${pct}%`, left + maxW - rightPad, y + 34);
+      });
+      ctx.textAlign = 'start';
     }
 
     retryBtn.onclick = () => {
@@ -868,16 +855,13 @@
       }
 
       if (target === 'whatsapp') {
-        const waUrl = `whatsapp://send?phone=966554260905&text=${encodeURIComponent('مرفق نتيجة الاختبار.')}`;
-        window.location.href = waUrl;
-        setTimeout(() => {
-          window.open(`https://wa.me/966554260905?text=${encodeURIComponent('تم تجهيز صورة النتيجة، يرجى إرفاقها إذا لم تظهر تلقائيًا.')}`, '_blank');
-        }, 700);
+        const waUrl = `https://wa.me/966554260905?text=${encodeURIComponent('تم تنزيل صورة النتيجة. يرجى إرفاقها وإرسالها.')}`;
+        window.open(waUrl, '_blank');
       } else {
-        const mailUrl = `mailto:mmuzayn7621@moe.gov.sa?subject=${encodeURIComponent('صورة نتيجة الاختبار')}&body=${encodeURIComponent('تم تجهيز صورة النتيجة. في حال عدم إرفاقها تلقائيًا، يرجى إرفاق الملف الذي تم تنزيله.')}`;
+        const mailUrl = `mailto:mmuzayn7621@moe.gov.sa?subject=${encodeURIComponent('صورة نتيجة الاختبار')}&body=${encodeURIComponent('تم تنزيل صورة النتيجة، وسيتم إرفاقها يدويًا قبل الإرسال.')}`;
         window.location.href = mailUrl;
       }
-      alert('تم تجهيز الصورة. في بعض المتصفحات لا يمكن إرفاق الصورة تلقائيًا داخل واتساب/البريد، وسيظهر لك الملف جاهزًا للإرفاق السريع.');
+      alert('تم تنزيل صورة JPG. إذا لم يدعم المتصفح الإرسال المباشر، أرفقي الصورة يدويًا.');
     }
 
     shareWhatsappBtn.onclick = async () => {
