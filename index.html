@@ -72,14 +72,7 @@
     .choice{display:flex; gap:10px; text-align:right; width:100%; border:1px solid var(--border); background:#fff; border-radius:14px; padding:11px 13px; font-size:17px; cursor:pointer}
     .choice:hover{background:#f8fbff; border-color:#93c5fd}
     .choice.selected{background:#eff6ff; border-color:var(--primary)}
-    .choice.correct{background:#f0fdf4; border-color:#86efac}
-    .choice.wrong{background:#fef2f2; border-color:#fecaca}
     .mark{width:24px; height:24px; border-radius:50%; border:2px solid #cbd5e1; display:inline-flex; align-items:center; justify-content:center; font-weight:900; flex:0 0 auto; margin-top:2px}
-    .choice.correct .mark{border-color:var(--ok); color:var(--ok)}
-    .choice.wrong .mark{border-color:var(--bad); color:var(--bad)}
-    .feedback{margin-top:12px; padding:10px 12px; border-radius:12px; display:none; font-weight:700}
-    .feedback.ok{display:block; background:#ecfdf5; color:#166534; border:1px solid #bbf7d0}
-    .feedback.bad{display:block; background:#fff7ed; color:#9a3412; border:1px solid #fed7aa}
     .actions{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-top:14px}
     .result-head{text-align:center}
     .big-score{font-size:54px; color:var(--primary); margin:8px 0; font-weight:900}
@@ -89,14 +82,38 @@
     .needs{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa}
     .review{display:grid; gap:10px; margin-top:14px}
     .item{border:1px solid var(--border); border-radius:12px; padding:11px; background:#fff}
+    .stats-grid{display:grid; grid-template-columns:repeat(4,minmax(120px,1fr)); gap:10px; margin:16px 0}
+    .stat{background:linear-gradient(180deg,#ffffff,#f8fbff); border:1px solid var(--border); border-radius:14px; padding:12px; text-align:center}
+    .stat b{display:block; font-size:26px; color:var(--primary); line-height:1.1}
+    .stat span{font-size:13px; color:var(--muted); font-weight:700}
+    .charts{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px}
+    .chart-card{border:1px solid var(--border); border-radius:14px; padding:12px; background:#fff}
+    .chart-card h3{margin:0 0 10px; color:#1e40af; font-size:16px}
+    .chart-wrap{position:relative; width:100%; height:260px}
+    canvas{width:100%; height:100%}
+    .analysis{border:1px solid #bfdbfe; background:#eff6ff; border-radius:14px; padding:12px; margin-top:12px}
+    .analysis h3{margin:0 0 6px; color:#1e3a8a}
+    .report-actions{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px}
     .writing{margin-top:18px; border:1px dashed #9fb3d9; border-radius:14px; padding:12px}
     .writing h3{margin:0 0 10px; color:#1e40af}
     .writing-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
     .footer-note{text-align:center; color:var(--muted); font-size:13px; margin-top:12px}
     @media(max-width:760px){
       .start-grid,.writing-grid{grid-template-columns:1fr}
+      .stats-grid,.charts{grid-template-columns:1fr}
       .q-text{font-size:19px}
       .content,header{padding:18px}
+    }
+    @page { size:A4; margin:12mm; }
+    @media print{
+      body{background:#fff}
+      .wrap{width:100%; margin:0; padding:0}
+      .card{box-shadow:none; border:0}
+      header,#startPanel,#quizPanel,.footer-note,#retryBtn,.report-actions .btn.secondary{display:none !important}
+      #resultPanel{display:block !important}
+      .content{padding:0}
+      .item,.chart-card,.stat,.analysis,.writing{break-inside:avoid}
+      .charts{grid-template-columns:1fr 1fr}
     }
   </style>
 </head>
@@ -109,11 +126,11 @@
           <div>إشراف مدير المدرسة الخامسة الابتدائية بالظهران / مشاعل بنت نائف العتيبي</div>
         </div>
         <h1>اختبار الفرق بين التاء المربوطة (ـة) والهاء (ـه)</h1>
-        <p class="subtitle">اختبار تفاعلي احترافي لمعلمات المرحلة الابتدائية مع عرض النتائج والإجابات الصحيحة والخاطئة.</p>
+        <p class="subtitle">اختبار تفاعلي احترافي بدون تصحيح فوري، مع تقرير نهائي شامل ورسوم بيانية قابلة للطباعة.</p>
       </header>
 
       <section class="content" id="startPanel">
-        <div class="hint">التعليمات: أكملي بياناتك أولًا، ثم اضغطي «بدء الاختبار». ستظهر الأسئلة على شكل بطاقات متتالية مع نتيجة تفصيلية في النهاية.</div>
+        <div class="hint">التعليمات: أكملي بياناتك أولًا، ثم اضغطي «بدء الاختبار». لن تظهر صحة الإجابة أثناء الاختبار، وستظهر النتيجة والتحليل الكامل فقط بعد الانتهاء.</div>
         <div class="start-grid">
           <div class="field">
             <label for="testerName">الاسم</label>
@@ -136,7 +153,7 @@
             </div>
             <div class="progress"><div class="bar" id="bar"></div></div>
           </div>
-          <div class="score-pill" id="liveScore">الدرجة: 0 / 0</div>
+          <div class="score-pill" id="liveScore">تمت الإجابة: 0 / 0</div>
         </div>
 
         <div class="q-card">
@@ -144,7 +161,6 @@
           <div class="q-num" id="qNum"></div>
           <p class="q-text" id="qText"></p>
           <div class="choices" id="choices"></div>
-          <div class="feedback" id="feedback"></div>
         </div>
 
         <div class="actions">
@@ -160,8 +176,24 @@
           <div class="big-score" id="finalScore"></div>
           <div class="grade" id="grade"></div>
           <p id="resultMsg"></p>
-          <button class="btn secondary" id="retryBtn">إعادة المحاولة</button>
+          <div class="report-actions">
+            <button class="btn primary" id="printBtn">طباعة / حفظ PDF (A4)</button>
+            <button class="btn secondary" id="retryBtn">إعادة المحاولة</button>
+          </div>
         </div>
+
+        <section class="stats-grid" id="statsGrid"></section>
+        <section class="charts">
+          <article class="chart-card">
+            <h3>توزيع الإجابات</h3>
+            <div class="chart-wrap"><canvas id="distributionChart"></canvas></div>
+          </article>
+          <article class="chart-card">
+            <h3>الأداء حسب قسم الاختبار</h3>
+            <div class="chart-wrap"><canvas id="sectionChart"></canvas></div>
+          </article>
+        </section>
+        <section class="analysis" id="analysis"></section>
 
         <div class="writing">
           <h3>نشاط كتابي (السؤال الخامس - غير محسوب في الدرجة)</h3>
@@ -179,7 +211,7 @@
       </section>
     </section>
 
-    <p class="footer-note">نموذج تفاعلي متسلسل: سؤال بعد سؤال، مع تصحيح فوري ومراجعة كاملة عند الانتهاء.</p>
+    <p class="footer-note">نموذج تفاعلي متسلسل: سؤال بعد سؤال، دون كشف صحة الإجابة أثناء الاختبار، مع تقرير نهائي كامل.</p>
   </main>
 
   <script>
@@ -238,7 +270,6 @@
     const qNum = document.getElementById('qNum');
     const qText = document.getElementById('qText');
     const choicesEl = document.getElementById('choices');
-    const feedback = document.getElementById('feedback');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const progressText = document.getElementById('progressText');
@@ -252,6 +283,11 @@
     const resultMsg = document.getElementById('resultMsg');
     const review = document.getElementById('review');
     const retryBtn = document.getElementById('retryBtn');
+    const printBtn = document.getElementById('printBtn');
+    const statsGrid = document.getElementById('statsGrid');
+    const analysis = document.getElementById('analysis');
+    const distributionChart = document.getElementById('distributionChart');
+    const sectionChart = document.getElementById('sectionChart');
 
     quizDate.value = new Date().toLocaleDateString('ar-SA');
 
@@ -276,8 +312,6 @@
       qNum.textContent = `السؤال ${current + 1}`;
       qText.textContent = item.q;
       choicesEl.innerHTML = '';
-      feedback.className = 'feedback';
-      feedback.textContent = '';
 
       item.choices.forEach((choice, idx) => {
         const btn = document.createElement('button');
@@ -285,10 +319,7 @@
         const selected = answers[current] === idx;
         btn.innerHTML = `<span class="mark">${selected ? '•' : ''}</span><span>${choice}</span>`;
 
-        if (answers[current] !== null) {
-          if (idx === item.answer) btn.classList.add('correct');
-          if (selected && idx !== item.answer) btn.classList.add('wrong');
-        } else if (selected) {
+        if (selected) {
           btn.classList.add('selected');
         }
 
@@ -299,12 +330,6 @@
         choicesEl.appendChild(btn);
       });
 
-      if (answers[current] !== null) {
-        const ok = answers[current] === item.answer;
-        feedback.className = 'feedback ' + (ok ? 'ok' : 'bad');
-        feedback.textContent = (ok ? '✅ إجابة صحيحة. ' : '❌ إجابة غير صحيحة. ') + item.explain;
-      }
-
       prevBtn.disabled = current === 0;
       nextBtn.textContent = current === questions.length - 1 ? 'عرض النتيجة' : 'التالي';
 
@@ -313,7 +338,7 @@
       bar.style.width = pct + '%';
       progressText.textContent = `السؤال ${current + 1} من ${questions.length}`;
       percentText.textContent = pct + '%';
-      liveScore.textContent = `الدرجة: ${score()} / ${questions.length}`;
+      liveScore.textContent = `تمت الإجابة: ${answered} / ${questions.length}`;
     }
 
     prevBtn.onclick = () => {
@@ -335,6 +360,9 @@
     function showResult(){
       const s = score();
       const pct = Math.round((s / questions.length) * 100);
+      const answered = answers.filter(x => x !== null).length;
+      const wrong = answered - s;
+      const unanswered = questions.length - answered;
       quizPanel.style.display = 'none';
       resultPanel.style.display = 'block';
       resultName.textContent = `الاسم: ${testerName.value.trim()} | التاريخ: ${quizDate.value}`;
@@ -355,6 +383,28 @@
         resultMsg.textContent = 'يفضل مراجعة قاعدة التاء المربوطة والهاء ثم إعادة الاختبار.';
       }
 
+      statsGrid.innerHTML = `
+        <article class="stat"><b>${pct}%</b><span>نسبة الإنجاز الصحيحة</span></article>
+        <article class="stat"><b>${s}</b><span>إجابات صحيحة</span></article>
+        <article class="stat"><b>${wrong}</b><span>إجابات خاطئة</span></article>
+        <article class="stat"><b>${unanswered}</b><span>غير مجابة</span></article>
+      `;
+
+      const completionPct = Math.round((answered / questions.length) * 100);
+      const wrongPct = answered ? Math.round((wrong / answered) * 100) : 0;
+      analysis.innerHTML = `
+        <h3>تحليل النتيجة</h3>
+        <ul>
+          <li>نسبة الإكمال: <b>${completionPct}%</b> (${answered} من ${questions.length}).</li>
+          <li>متوسط الدقة: <b>${pct}%</b> من كامل الاختبار.</li>
+          <li>متوسط الخطأ بين الإجابات المختارة: <b>${wrongPct}%</b>.</li>
+          <li>التوصية: ${pct >= 90 ? 'جاهزية ممتازة واستمرارية بنفس المستوى.' : pct >= 70 ? 'مستوى جيد جدًا مع تحسين النقاط الخاطئة.' : 'تحتاجين إلى مراجعة إضافية قبل إعادة الاختبار.'}</li>
+        </ul>
+      `;
+
+      drawDistributionChart({correct:s, wrong, unanswered});
+      drawSectionChart();
+
       review.innerHTML = questions.map((q, i) => {
         const user = answers[i] === null ? 'لم يتم الاختيار' : q.choices[answers[i]];
         const correct = q.choices[q.answer];
@@ -368,6 +418,82 @@
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
+    function drawDistributionChart(data){
+      const ctx = distributionChart.getContext('2d');
+      const width = distributionChart.width = distributionChart.clientWidth * 2;
+      const height = distributionChart.height = distributionChart.clientHeight * 2;
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.scale(2,2);
+      const w = width / 2;
+      const h = height / 2;
+      ctx.clearRect(0,0,w,h);
+
+      const values = [data.correct, data.wrong, data.unanswered];
+      const labels = ['صحيحة','خاطئة','غير مجابة'];
+      const colors = ['#16a34a','#dc2626','#64748b'];
+      const total = Math.max(values.reduce((a,b)=>a+b,0),1);
+      let start = -Math.PI / 2;
+      const cx = w * 0.35;
+      const cy = h * 0.5;
+      const r = Math.min(w,h) * 0.28;
+
+      values.forEach((v, i) => {
+        const angle = (v / total) * Math.PI * 2;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, r, start, start + angle);
+        ctx.closePath();
+        ctx.fillStyle = colors[i];
+        ctx.fill();
+        start += angle;
+      });
+
+      labels.forEach((label, i) => {
+        const y = 30 + i * 28;
+        ctx.fillStyle = colors[i];
+        ctx.fillRect(w * 0.62, y - 10, 14, 14);
+        ctx.fillStyle = '#1e293b';
+        ctx.font = 'bold 13px Tajawal';
+        ctx.fillText(`${label}: ${values[i]}`, w * 0.62 + 20, y);
+      });
+    }
+
+    function drawSectionChart(){
+      const ctx = sectionChart.getContext('2d');
+      const width = sectionChart.width = sectionChart.clientWidth * 2;
+      const height = sectionChart.height = sectionChart.clientHeight * 2;
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.scale(2,2);
+      const w = width / 2;
+      const h = height / 2;
+      ctx.clearRect(0,0,w,h);
+
+      const grouped = questions.reduce((acc, q, i) => {
+        if (!acc[q.section]) acc[q.section] = {total:0, correct:0};
+        acc[q.section].total += 1;
+        if (answers[i] === q.answer) acc[q.section].correct += 1;
+        return acc;
+      }, {});
+      const labels = Object.keys(grouped);
+      const barH = 22;
+      const gap = 18;
+      const left = 10;
+      const maxW = w - 180;
+
+      labels.forEach((label, i) => {
+        const y = 20 + i * (barH + gap);
+        const ratio = grouped[label].total ? grouped[label].correct / grouped[label].total : 0;
+        const barW = Math.max(2, Math.round(maxW * ratio));
+        ctx.fillStyle = '#e2e8f0';
+        ctx.fillRect(left, y, maxW, barH);
+        ctx.fillStyle = '#2563eb';
+        ctx.fillRect(left, y, barW, barH);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 12px Tajawal';
+        ctx.fillText(`${label} (${Math.round(ratio*100)}%)`, left + maxW + 8, y + 15);
+      });
+    }
+
     retryBtn.onclick = () => {
       current = 0;
       answers = Array(questions.length).fill(null);
@@ -376,6 +502,8 @@
       render();
       window.scrollTo({top:0, behavior:'smooth'});
     };
+
+    printBtn.onclick = () => window.print();
   </script>
 </body>
 </html>
