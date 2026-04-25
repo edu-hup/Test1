@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>إعداد منسقة الوعي الفكري / معالي بنت إبراهيم المزين | إشراف مدير المدرسة الخامسة الابتدائية بالظهران / مشاعل بنت نائف العتيبي | اختبار الفرق بين التاء المربوطة والهاء</title>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Tajawal:wght@400;700&display=swap');
 
@@ -143,6 +144,54 @@
     .print-head{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--border);border-radius:14px;padding:10px 12px;background:#f8fcfb;margin-bottom:10px}
     .print-head .logo-block{color:#166534}
     .report-actions{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px}
+    .report-frame{
+      border:1px solid #c9ded8;
+      border-radius:18px;
+      padding:14px;
+      background:linear-gradient(180deg,#ffffff,#f6fbfa);
+      box-shadow:inset 0 0 0 1px #e7f1ee;
+      margin-bottom:14px;
+    }
+    .official-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:center;margin-bottom:10px}
+    .official-top .meta{font-weight:700;color:#0b5f66;line-height:1.6}
+    .official-title{text-align:center}
+    .official-title h2{margin:0;color:#0d6e73}
+    .official-title p{margin:0;color:#4e6e74;font-weight:700}
+    .identity-row{
+      border:1px solid #c9ded8;
+      border-radius:12px;
+      padding:8px 12px;
+      background:#fff;
+      color:#06363e;
+      font-weight:700;
+      text-align:center;
+      margin-bottom:10px;
+    }
+    .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
+    .kpi{
+      border:1px solid #cfe3df;
+      border-radius:12px;
+      padding:8px 10px;
+      background:#fff;
+      font-weight:700;
+      color:#0a4f57;
+    }
+    .quality-bar{
+      border:1px solid #cfe3df;
+      border-radius:999px;
+      overflow:hidden;
+      height:16px;
+      background:#eff5f4;
+      margin:8px 0;
+    }
+    .quality-bar span{display:block;height:100%;background:linear-gradient(90deg,#de4d4d,#f59e0b,#10b981)}
+    .criteria-table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px}
+    .criteria-table th{background:#0f8578;color:#fff;padding:8px}
+    .criteria-table td{border:1px solid #d9e8e5;padding:7px;background:#fff}
+    .criteria-table tr:nth-child(even) td{background:#f8fcfb}
+    .share-prompt{display:none;border:1px solid #9ad5cb;background:#f0fbf9;border-radius:12px;padding:10px;margin-top:10px}
+    .share-prompt.active{display:block}
+    .share-options{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
     .writing{margin-top:18px; border:1px dashed #9fb3d9; border-radius:14px; padding:12px}
     .writing h3{margin:0 0 10px; color:#1e40af}
     .writing-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
@@ -157,6 +206,7 @@
       .header-top{flex-direction:column}
       .logo-block svg,.logo-block img{width:min(340px,92vw);height:auto}
       .start-grid,.writing-grid{grid-template-columns:1fr}
+      .official-top,.kpi-row{grid-template-columns:1fr}
       .stats-grid,.charts{grid-template-columns:1fr}
       .q-text{font-size:1.2rem}
       .content,header{padding:18px}
@@ -245,8 +295,17 @@
       </section>
 
       <section class="content" id="resultPanel">
-        <div class="print-head">
-          <div class="logo-block">
+        <div class="report-frame" id="exportReport">
+          <div class="official-top">
+            <div class="meta" id="reportDateBlock"></div>
+            <div class="official-title">
+              <h2>وزارة التعليم</h2>
+              <p>نموذج تقرير تقييم الأداء</p>
+            </div>
+            <div class="meta" id="reportOrgBlock">الإدارة العامة للتعليم بالمنطقة الشرقية<br>اسم المدرسة: المدرسة الخامسة الابتدائية بالظهران</div>
+          </div>
+          <div class="print-head">
+            <div class="logo-block">
             <svg viewBox="0 0 780 180" aria-label="شعار المدرسة ووزارة التعليم - أخضر" role="img">
               <text x="58" y="86" fill="#2f6d3b" font-size="56" font-weight="700" font-family="Tajawal">المدرسة الخامسة الابتدائية بالظهران</text>
               <text x="274" y="140" fill="#2f6d3b" font-size="56" font-weight="700" font-family="Tajawal">قسم الوعي الفكري</text>
@@ -263,45 +322,67 @@
             </svg>
           </div>
           <div style="font-weight:800;color:#0a6d72">تقرير نتيجة الاختبار</div>
+          </div>
+          <div class="identity-row" id="resultName"></div>
+          <div class="result-head">
+            <div class="big-score" id="finalScore"></div>
+            <div class="grade" id="grade"></div>
+            <p id="resultMsg"></p>
+          </div>
+          <div class="kpi-row" id="statsGrid"></div>
+          <div><b>مؤشر الإنجاز</b></div>
+          <div class="quality-bar"><span id="qualityBarFill" style="width:0%"></span></div>
+          <table class="criteria-table">
+            <thead>
+              <tr>
+                <th>عناصر التقييم</th>
+                <th>نسبة الإنجاز</th>
+                <th>الإجابات الصحيحة</th>
+                <th>عدد الأسئلة</th>
+              </tr>
+            </thead>
+            <tbody id="criteriaBody"></tbody>
+          </table>
+
+          <section class="charts">
+            <article class="chart-card">
+              <h3>توزيع الإجابات</h3>
+              <div class="chart-wrap"><canvas id="distributionChart"></canvas></div>
+            </article>
+            <article class="chart-card">
+              <h3>الأداء حسب قسم الاختبار</h3>
+              <div class="chart-wrap"><canvas id="sectionChart"></canvas></div>
+            </article>
+          </section>
+          <section class="analysis" id="analysis"></section>
+
+          <div class="writing">
+            <h3>نشاط كتابي (السؤال الخامس - غير محسوب في الدرجة)</h3>
+            <div class="writing-grid">
+              <div class="field"><label>كلمة تنتهي بـ (ـة)</label><input /></div>
+              <div class="field"><label>كلمة تنتهي بـ (ـة)</label><input /></div>
+              <div class="field"><label>كلمة تنتهي بـ (ـة)</label><input /></div>
+              <div class="field"><label>كلمة تنتهي بـ (ـه)</label><input /></div>
+              <div class="field"><label>كلمة تنتهي بـ (ـه)</label><input /></div>
+              <div class="field"><label>كلمة تنتهي بـ (ـه)</label><input /></div>
+            </div>
+          </div>
+
+          <div class="review" id="review"></div>
         </div>
-        <div class="result-head">
-          <h2>نتيجة الاختبار</h2>
-          <p id="resultName"></p>
-          <div class="big-score" id="finalScore"></div>
-          <div class="grade" id="grade"></div>
-          <p id="resultMsg"></p>
-          <div class="report-actions">
-            <button class="btn primary" id="printBtn">طباعة / حفظ PDF (A4)</button>
-            <button class="btn secondary" id="retryBtn">إعادة المحاولة</button>
+        <div class="report-actions">
+          <button class="btn primary" id="printBtn">طباعة / حفظ PDF (A4)</button>
+          <button class="btn primary" id="exportJpgBtn">تصدير JPG</button>
+          <button class="btn secondary" id="shareBtn">إرسال النتيجة</button>
+          <button class="btn secondary" id="retryBtn">إعادة المحاولة</button>
+        </div>
+        <div class="share-prompt" id="sharePrompt">
+          <div>اختاري طريقة الإرسال:</div>
+          <div class="share-options">
+            <button class="btn primary" id="shareWhatsappBtn">واتساب</button>
+            <button class="btn primary" id="shareEmailBtn">بريد إلكتروني</button>
           </div>
         </div>
-
-        <section class="stats-grid" id="statsGrid"></section>
-        <section class="charts">
-          <article class="chart-card">
-            <h3>توزيع الإجابات</h3>
-            <div class="chart-wrap"><canvas id="distributionChart"></canvas></div>
-          </article>
-          <article class="chart-card">
-            <h3>الأداء حسب قسم الاختبار</h3>
-            <div class="chart-wrap"><canvas id="sectionChart"></canvas></div>
-          </article>
-        </section>
-        <section class="analysis" id="analysis"></section>
-
-        <div class="writing">
-          <h3>نشاط كتابي (السؤال الخامس - غير محسوب في الدرجة)</h3>
-          <div class="writing-grid">
-            <div class="field"><label>كلمة تنتهي بـ (ـة)</label><input /></div>
-            <div class="field"><label>كلمة تنتهي بـ (ـة)</label><input /></div>
-            <div class="field"><label>كلمة تنتهي بـ (ـة)</label><input /></div>
-            <div class="field"><label>كلمة تنتهي بـ (ـه)</label><input /></div>
-            <div class="field"><label>كلمة تنتهي بـ (ـه)</label><input /></div>
-            <div class="field"><label>كلمة تنتهي بـ (ـه)</label><input /></div>
-          </div>
-        </div>
-
-        <div class="review" id="review"></div>
       </section>
     </section>
 
@@ -378,10 +459,20 @@
     const review = document.getElementById('review');
     const retryBtn = document.getElementById('retryBtn');
     const printBtn = document.getElementById('printBtn');
+    const exportJpgBtn = document.getElementById('exportJpgBtn');
+    const shareBtn = document.getElementById('shareBtn');
+    const sharePrompt = document.getElementById('sharePrompt');
+    const shareWhatsappBtn = document.getElementById('shareWhatsappBtn');
+    const shareEmailBtn = document.getElementById('shareEmailBtn');
+    const exportReport = document.getElementById('exportReport');
+    const criteriaBody = document.getElementById('criteriaBody');
+    const qualityBarFill = document.getElementById('qualityBarFill');
+    const reportDateBlock = document.getElementById('reportDateBlock');
     const statsGrid = document.getElementById('statsGrid');
     const analysis = document.getElementById('analysis');
     const distributionChart = document.getElementById('distributionChart');
     const sectionChart = document.getElementById('sectionChart');
+    let cachedJpgBlob = null;
 
     quizDate.value = new Date().toLocaleDateString('ar-SA');
 
@@ -460,7 +551,10 @@
       quizPanel.style.display = 'none';
       resultPanel.style.display = 'block';
       resultName.textContent = `الاسم: ${testerName.value.trim()} | التاريخ: ${quizDate.value}`;
+      reportDateBlock.innerHTML = `التاريخ: ${quizDate.value}<br>اليوم: ${new Date().toLocaleDateString('ar-SA', { weekday: 'long' })}<br>نوع التقرير: ختامي`;
       finalScore.textContent = `${s} / ${questions.length}`;
+      qualityBarFill.style.width = `${pct}%`;
+      cachedJpgBlob = null;
 
       grade.className = 'grade';
       if (pct >= 90) {
@@ -478,10 +572,10 @@
       }
 
       statsGrid.innerHTML = `
-        <article class="stat"><b>${pct}%</b><span>نسبة الإنجاز الصحيحة</span></article>
-        <article class="stat"><b>${s}</b><span>إجابات صحيحة</span></article>
-        <article class="stat"><b>${wrong}</b><span>إجابات خاطئة</span></article>
-        <article class="stat"><b>${unanswered}</b><span>غير مجابة</span></article>
+        <article class="kpi"><b>${pct}%</b><br><span>الدرجة النسبية</span></article>
+        <article class="kpi"><b>${s}</b><br><span>إجابات صحيحة</span></article>
+        <article class="kpi"><b>${wrong}</b><br><span>إجابات خاطئة</span></article>
+        <article class="kpi"><b>${unanswered}</b><br><span>غير مجابة</span></article>
       `;
 
       const completionPct = Math.round((answered / questions.length) * 100);
@@ -497,7 +591,7 @@
       `;
 
       drawDistributionChart({correct:s, wrong, unanswered});
-      drawSectionChart();
+      drawSectionChart(true);
 
       review.innerHTML = questions.map((q, i) => {
         const user = answers[i] === null ? 'لم يتم الاختيار' : q.choices[answers[i]];
@@ -575,7 +669,7 @@
       });
     }
 
-    function drawSectionChart(){
+    function drawSectionChart(fillTable = false){
       const ctx = sectionChart.getContext('2d');
       const width = sectionChart.width = sectionChart.clientWidth * 2;
       const height = sectionChart.height = sectionChart.clientHeight * 2;
@@ -592,6 +686,18 @@
         return acc;
       }, {});
       const labels = Object.keys(grouped);
+      if (fillTable) {
+        criteriaBody.innerHTML = labels.map((label, i) => {
+          const g = grouped[label];
+          const pctSection = g.total ? Math.round((g.correct / g.total) * 100) : 0;
+          return `<tr>
+            <td>${i + 1} - ${label}</td>
+            <td>${pctSection}%</td>
+            <td>${g.correct}</td>
+            <td>${g.total}</td>
+          </tr>`;
+        }).join('');
+      }
       const barH = 18;
       const gap = 28;
       const left = 20;
@@ -633,12 +739,92 @@
       current = 0;
       answers = Array(questions.length).fill(null);
       resultPanel.style.display = 'none';
+      sharePrompt.classList.remove('active');
       quizPanel.style.display = 'block';
       render();
       window.scrollTo({top:0, behavior:'smooth'});
     };
 
     printBtn.onclick = () => window.print();
+
+    async function generateResultJpgBlob(){
+      if (cachedJpgBlob) return cachedJpgBlob;
+      const canvas = await html2canvas(exportReport, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff'
+      });
+      cachedJpgBlob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.95));
+      return cachedJpgBlob;
+    }
+
+    async function exportJpg(){
+      const blob = await generateResultJpgBlob();
+      const fileName = `نتيجة-${testerName.value.trim() || 'طالبة'}-${Date.now()}.jpg`;
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(link.href);
+      return {blob, fileName};
+    }
+
+    shareBtn.onclick = () => {
+      sharePrompt.classList.toggle('active');
+    };
+
+    exportJpgBtn.onclick = async () => {
+      exportJpgBtn.disabled = true;
+      exportJpgBtn.textContent = 'جاري التصدير...';
+      try {
+        await exportJpg();
+        exportJpgBtn.textContent = 'تم التصدير ✓';
+      } catch (error) {
+        alert('تعذر تصدير صورة التقرير حاليًا.');
+        exportJpgBtn.textContent = 'تصدير JPG';
+      } finally {
+        setTimeout(() => {
+          exportJpgBtn.disabled = false;
+          exportJpgBtn.textContent = 'تصدير JPG';
+        }, 1200);
+      }
+    };
+
+    async function shareWithTarget(target){
+      const {blob, fileName} = await exportJpg();
+      const file = new File([blob], fileName, {type:'image/jpeg'});
+      const message = target === 'whatsapp'
+        ? 'تقرير نتيجة الاختبار المرفق. للإرسال إلى الرقم: 966554260905'
+        : 'تقرير نتيجة الاختبار المرفق. البريد المستهدف: mmuzayn7621@moe.gov.sa';
+
+      if (navigator.canShare && navigator.canShare({files:[file]}) && navigator.share) {
+        await navigator.share({
+          files:[file],
+          title:'تقرير نتيجة الاختبار',
+          text: message
+        });
+        return;
+      }
+
+      if (target === 'whatsapp') {
+        const waUrl = `https://wa.me/966554260905?text=${encodeURIComponent('تم تنزيل صورة النتيجة. يرجى إرفاقها وإرسالها.')}`;
+        window.open(waUrl, '_blank');
+      } else {
+        const mailUrl = `mailto:mmuzayn7621@moe.gov.sa?subject=${encodeURIComponent('صورة نتيجة الاختبار')}&body=${encodeURIComponent('تم تنزيل صورة النتيجة، وسيتم إرفاقها يدويًا قبل الإرسال.')}`;
+        window.location.href = mailUrl;
+      }
+      alert('تم تنزيل صورة JPG. إذا لم يدعم المتصفح الإرسال المباشر، أرفقي الصورة يدويًا.');
+    }
+
+    shareWhatsappBtn.onclick = async () => {
+      await shareWithTarget('whatsapp');
+    };
+
+    shareEmailBtn.onclick = async () => {
+      await shareWithTarget('email');
+    };
   </script>
 </body>
 </html>
