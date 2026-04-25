@@ -21,6 +21,11 @@
       --gold:#b9a578;
       --border:#cfe3df;
       --soft:#e9f5f3;
+      --chart-paper:#f8f9f2;
+      --chart-track:#d5dfd2;
+      --chart-green:#5d9b72;
+      --chart-green-soft:#90b99a;
+      --chart-dark:#1d2127;
       --headings-font:"Cairo", "Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
       --body-font:"Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
     }
@@ -134,10 +139,28 @@
     .stat{background:linear-gradient(180deg,#ffffff,#f1f8f7); border:1px solid var(--border); border-radius:14px; padding:12px; text-align:center}
     .stat b{display:block; font-size:1.625rem; color:#0d8f82; line-height:1.1}
     .stat span{font-size:.95rem; color:var(--muted); font-weight:700}
-    .charts{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px}
-    .chart-card{border:1px solid var(--border); border-radius:14px; padding:12px; background:#fff}
-    .chart-card h3{margin:0 0 10px; color:#0a6d72}
-    .chart-wrap{position:relative; width:100%; height:260px}
+    .charts{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:8px}
+    .chart-card{
+      border:1px solid #d7ded3;
+      border-radius:24px;
+      padding:16px;
+      background:linear-gradient(180deg,#fbfcf7,#f4f7ef);
+      box-shadow:0 10px 28px rgba(18,35,26,.08), inset 0 0 0 1px rgba(255,255,255,.75);
+    }
+    .chart-card h3{
+      margin:0 0 14px;
+      color:#1d3a2a;
+      font-size:1.3rem;
+    }
+    .chart-wrap{
+      position:relative;
+      width:100%;
+      height:282px;
+      border-radius:18px;
+      background:var(--chart-paper);
+      border:1px solid #e2e8dc;
+      padding:6px;
+    }
     canvas{width:100%; height:100%}
     .analysis{border:1px solid #9ad5cb; background:#e9f5f3; border-radius:14px; padding:12px; margin-top:12px}
     .analysis h3{margin:0 0 6px; color:#0a6d72}
@@ -599,17 +622,21 @@
 
       const values = [data.correct, data.wrong, data.unanswered];
       const labels = ['صحيحة','خاطئة','غير مجابة'];
-      const colors = ['#0f9d8a','#e25b50','#6b7f86'];
+      const colors = ['#5d9b72','#1d2127','#b5c5b2'];
       const total = Math.max(values.reduce((a,b)=>a+b,0),1);
       let start = -Math.PI / 2;
-      const cx = w * 0.35;
+      const cardPad = 14;
+      const legendW = Math.min(230, w * 0.38);
+      const legendX = w - legendW - cardPad;
+      const donutAreaW = Math.max(180, legendX - cardPad * 2);
+      const cx = cardPad + donutAreaW * 0.52;
       const cy = h * 0.5;
-      const r = Math.min(w,h) * 0.29;
-      const ring = r * 0.46;
+      const r = Math.min(donutAreaW * 0.42, h * 0.36);
+      const ring = r * 0.44;
 
       ctx.beginPath();
-      ctx.arc(cx, cy, r + 10, 0, Math.PI * 2);
-      ctx.fillStyle = '#f2f8f7';
+      ctx.arc(cx, cy, r + 12, 0, Math.PI * 2);
+      ctx.fillStyle = '#e7ece3';
       ctx.fill();
 
       values.forEach((v, i) => {
@@ -623,30 +650,34 @@
         start += angle;
       });
 
-      ctx.fillStyle = '#0a6d72';
-      ctx.font = '700 15px Tajawal';
+      ctx.fillStyle = '#244330';
+      ctx.font = '700 16px Tajawal';
       ctx.textAlign = 'center';
       ctx.fillText('الدقة العامة', cx, cy - 8);
-      ctx.font = '900 24px Tajawal';
+      ctx.font = '900 27px Tajawal';
       const accuracy = Math.round((data.correct / total) * 100);
       ctx.fillText(`${accuracy}%`, cx, cy + 20);
       ctx.textAlign = 'start';
 
       labels.forEach((label, i) => {
-        const y = 34 + i * 44;
+        const y = 48 + i * 58;
         const percent = Math.round((values[i] / total) * 100);
-        ctx.fillStyle = '#ffffff';
-        ctx.strokeStyle = '#d6e7e4';
+        ctx.fillStyle = '#f9fbf7';
+        ctx.strokeStyle = '#d6dfd3';
         ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.roundRect(w * 0.58, y - 18, w * 0.36, 30, 10);
+        ctx.roundRect(legendX, y - 22, legendW, 40, 20);
         ctx.fill();
         ctx.stroke();
         ctx.fillStyle = colors[i];
-        ctx.fillRect(w * 0.6, y - 8, 14, 14);
-        ctx.fillStyle = '#11353d';
-        ctx.font = '700 14px Tajawal';
-        ctx.fillText(`${label}: ${values[i]} (${percent}%)`, w * 0.6 + 22, y + 4);
+        ctx.beginPath();
+        ctx.roundRect(legendX + 14, y - 10, 22, 22, 9);
+        ctx.fill();
+        ctx.fillStyle = '#21302a';
+        ctx.font = '700 20px Tajawal';
+        ctx.textAlign = 'right';
+        ctx.fillText(`${label}: ${values[i]} (${percent}%)`, legendX + legendW - 14, y + 5);
+        ctx.textAlign = 'start';
       });
     }
 
@@ -679,39 +710,52 @@
           </tr>`;
         }).join('');
       }
-      const barH = 18;
-      const gap = 28;
-      const left = 20;
-      const maxW = w - 210;
+      const panelX = 18;
+      const panelY = 18;
+      const panelW = w - 36;
+      const panelH = h - 36;
+      const rowGap = 22;
+      const rowH = (panelH - (labels.length + 1) * rowGap) / labels.length;
+      const barH = Math.min(18, Math.max(12, rowH * 0.36));
+      const left = panelX + 28;
+      const rightPad = 26;
+      const maxW = panelW - 56;
       ctx.textAlign = 'right';
 
-      ctx.fillStyle = '#edf6f4';
-      ctx.fillRect(left, 18, maxW, labels.length * (barH + gap));
+      ctx.fillStyle = '#eff3ea';
+      ctx.beginPath();
+      ctx.roundRect(panelX, panelY, panelW, panelH, 14);
+      ctx.fill();
 
       labels.forEach((label, i) => {
-        const y = 26 + i * (barH + gap);
+        const y = panelY + rowGap + i * (rowH + rowGap) + 20;
         const ratio = grouped[label].total ? grouped[label].correct / grouped[label].total : 0;
-        const barW = Math.max(4, Math.round(maxW * ratio));
+        const barW = Math.max(6, Math.round(maxW * ratio));
         const pct = Math.round(ratio*100);
-        const grad = ctx.createLinearGradient(left, y, left + barW, y);
-        grad.addColorStop(0, '#0f7fb3');
-        grad.addColorStop(1, '#0f9d8a');
+        const shortLabel = label.includes(':') ? label.split(':').slice(1).join(':').trim() : label;
 
-        ctx.fillStyle = '#d7e5e3';
+        ctx.fillStyle = '#c8d6c4';
         ctx.beginPath();
-        ctx.roundRect(left, y, maxW, barH, 11);
-        ctx.fill();
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.roundRect(left, y, barW, barH, 11);
+        ctx.roundRect(left, y, maxW, barH, 999);
         ctx.fill();
 
-        ctx.fillStyle = '#11353d';
-        ctx.font = '700 12px Tajawal';
-        ctx.fillText(label, left + maxW - 6, y + 13);
-        ctx.fillStyle = '#0d8f82';
-        ctx.font = '900 13px Tajawal';
-        ctx.fillText(`${pct}%`, left - 6, y + 13);
+        ctx.fillStyle = '#8fb596';
+        ctx.beginPath();
+        ctx.roundRect(left, y, barW, barH, 999);
+        ctx.fill();
+
+        const darkSegment = Math.min(barW, Math.max(10, Math.round(barW * 0.28)));
+        ctx.fillStyle = '#1d2127';
+        ctx.beginPath();
+        ctx.roundRect(left + barW - darkSegment, y, darkSegment, barH, 999);
+        ctx.fill();
+
+        ctx.fillStyle = '#1e2e26';
+        ctx.font = '700 17px Tajawal';
+        ctx.fillText(shortLabel, left + maxW - rightPad, y - 12);
+        ctx.fillStyle = '#1d2127';
+        ctx.font = '900 22px Tajawal';
+        ctx.fillText(`${pct}%`, left + maxW - rightPad, y + 34);
       });
       ctx.textAlign = 'start';
     }
