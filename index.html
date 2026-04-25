@@ -445,7 +445,7 @@
       </header>
 
       <section class="content" id="startPanel">
-        <div class="hint">التعليمات: أكملي بياناتك أولًا، ثم اضغطي «بدء الاختبار». لن تظهر صحة الإجابة أثناء الاختبار، وستظهر النتيجة والتحليل الكامل فقط بعد الانتهاء.</div>
+        <div class="hint">التعليمات: أكملي بياناتك أولًا، ثم اختاري نمط الانتقال بين الأسئلة، ثم اضغطي «بدء الاختبار». لن تظهر صحة الإجابة أثناء الاختبار، وستظهر النتيجة والتحليل الكامل فقط بعد الانتهاء.</div>
         <div class="start-grid">
           <div class="field">
             <label for="testerName">الاسم</label>
@@ -454,6 +454,13 @@
           <div class="field">
             <label for="quizDate">التاريخ</label>
             <input id="quizDate" />
+          </div>
+          <div class="field" style="grid-column:1 / -1;">
+            <label for="navMode">طريقة الانتقال بين الأسئلة</label>
+            <select id="navMode">
+              <option value="auto" selected>انتقال آلي بعد الإجابة</option>
+              <option value="manual">انتقال يدوي بزر «التالي»</option>
+            </select>
           </div>
         </div>
         <button class="btn primary" id="startBtn" disabled>بدء الاختبار</button>
@@ -615,6 +622,7 @@
     const testerName = document.getElementById('testerName');
     const quizDate = document.getElementById('quizDate');
     const startBtn = document.getElementById('startBtn');
+    const navMode = document.getElementById('navMode');
     const startPanel = document.getElementById('startPanel');
     const quizPanel = document.getElementById('quizPanel');
     const resultPanel = document.getElementById('resultPanel');
@@ -645,6 +653,7 @@
     const ringGrid = document.getElementById('ringGrid');
     const barGrid = document.getElementById('barGrid');
     let cachedJpgBlob = null;
+    let autoAdvance = true;
 
     quizDate.value = new Date().toLocaleDateString('ar-SA');
 
@@ -653,6 +662,7 @@
     });
 
     startBtn.addEventListener('click', () => {
+      autoAdvance = navMode.value === 'auto';
       startPanel.style.display = 'none';
       quizPanel.style.display = 'block';
       render();
@@ -682,6 +692,15 @@
 
         btn.onclick = () => {
           answers[current] = idx;
+          if (autoAdvance) {
+            if (current === questions.length - 1) {
+              showResult();
+            } else {
+              current++;
+              render();
+            }
+            return;
+          }
           render();
         };
         choicesEl.appendChild(btn);
@@ -689,6 +708,8 @@
 
       prevBtn.disabled = current === 0;
       nextBtn.textContent = current === questions.length - 1 ? 'عرض النتيجة' : 'التالي';
+      nextBtn.disabled = answers[current] === null;
+      nextBtn.style.display = autoAdvance ? 'none' : 'inline-flex';
 
       const answered = answers.filter(x => x !== null).length;
       const pct = Math.round((answered / questions.length) * 100);
