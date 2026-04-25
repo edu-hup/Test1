@@ -5,278 +5,377 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>إعداد منسقة الوعي الفكري / معالي بنت إبراهيم المزين | إشراف مدير المدرسة الخامسة الابتدائية بالظهران / مشاعل بنت نائف العتيبي | اختبار الفرق بين التاء المربوطة والهاء</title>
   <style>
-    :root {
-      --bg: #f5f7ff;
-      --paper: #ffffff;
-      --ink: #172033;
-      --muted: #52627a;
-      --brand: #1f4fbf;
-      --brand-soft: #e8efff;
-      --border: #dbe4f3;
-      --accent: #f59e0b;
+    :root{
+      --bg:#f5f7ff;
+      --card:#fff;
+      --ink:#172033;
+      --muted:#64748b;
+      --primary:#2563eb;
+      --primary-dark:#1e40af;
+      --ok:#16a34a;
+      --bad:#dc2626;
+      --border:#dbe4f3;
+      --soft:#eff6ff;
     }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: "Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
-      color: var(--ink);
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
       background:
-        radial-gradient(circle at 10% 0%, #dbeafe 0, transparent 28%),
-        radial-gradient(circle at 100% 100%, #fef3c7 0, transparent 30%),
+        radial-gradient(circle at top right, #dbeafe 0, transparent 30%),
+        radial-gradient(circle at bottom left, #fef3c7 0, transparent 24%),
         var(--bg);
-      line-height: 1.95;
+      color:var(--ink);
+      min-height:100vh;
+      line-height:1.8;
     }
-
-    .page {
-      width: min(1100px, 95vw);
-      margin: 22px auto 40px;
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: 0 18px 38px rgba(20, 38, 76, 0.12);
-      overflow: hidden;
+    .wrap{width:min(1050px,95vw); margin:0 auto; padding:24px 0 44px;}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:22px;
+      box-shadow:0 16px 38px rgba(30,58,138,.12);
+      overflow:hidden;
     }
-
-    .header {
-      padding: 30px 30px 24px;
-      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #3b82f6 100%);
-      color: #fff;
+    header{
+      background:linear-gradient(135deg,#1e3a8a,#2563eb);
+      color:#fff;
+      padding:24px;
     }
-
-    .header-top {
-      display: grid;
-      gap: 8px;
-      margin-bottom: 18px;
-      font-size: 17px;
-      font-weight: 600;
-      color: #e2e8f0;
-    }
-
-    h1 {
-      margin: 0 0 8px;
-      font-size: clamp(25px, 3.2vw, 36px);
-      line-height: 1.45;
-    }
-
-    .subtitle {
-      margin: 0;
-      font-size: 17px;
-      color: #dbeafe;
-    }
-
-    .content {
-      padding: 26px 30px 34px;
-    }
-
-    .student-data {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-
-    .data-box {
-      border: 1px solid var(--border);
-      background: #f8fbff;
-      border-radius: 14px;
-      padding: 10px 14px;
-      font-weight: 700;
-    }
-
-    .instructions {
-      margin: 14px 0 22px;
-      border: 1px solid #c7d6f5;
-      background: var(--brand-soft);
-      border-radius: 16px;
-      padding: 14px 16px;
-      color: #1e3a8a;
-      font-weight: 700;
-    }
-
-    .section {
-      margin-bottom: 22px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px 16px;
-      background: #fff;
-    }
-
-    .section-title {
-      margin: 0 0 10px;
-      color: var(--brand);
-      font-size: 21px;
-      font-weight: 900;
-    }
-
-    ol {
-      margin: 0;
-      padding-inline-start: 26px;
-    }
-
-    li { margin-bottom: 10px; }
-
-    .answer-line {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-weight: 700;
-      border-bottom: 1px dashed #9fb3d9;
-      min-height: 30px;
-      padding-bottom: 3px;
-    }
-
-    .classification {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .class-box {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      background: #f9fbff;
-      min-height: 110px;
-    }
-
-    .class-box h4 {
-      margin: 0 0 8px;
-      color: #1e3a8a;
-      font-size: 16px;
-    }
-
-    .inline-blank {
-      display: inline-block;
-      min-width: 130px;
-      border-bottom: 1px dashed #7486ab;
-      transform: translateY(-2px);
-    }
-
-    .words-list {
-      margin: 0 0 10px;
-      color: #334155;
-      font-weight: 700;
-    }
-
-    .footer-note {
-      border-top: 1px solid var(--border);
-      margin-top: 8px;
-      padding-top: 10px;
-      color: var(--muted);
-      font-size: 14px;
-      text-align: center;
-    }
-
-    @media (max-width: 760px) {
-      .student-data,
-      .classification {
-        grid-template-columns: 1fr;
-      }
-
-      .header,
-      .content {
-        padding: 20px;
-      }
-    }
-
-    @media print {
-      body { background: #fff; }
-      .page {
-        width: 100%;
-        margin: 0;
-        border: 0;
-        box-shadow: none;
-        border-radius: 0;
-      }
+    .credits{font-weight:700; color:#dbeafe; display:grid; gap:4px; margin-bottom:8px;}
+    h1{margin:0; font-size:clamp(23px,3.4vw,35px); line-height:1.4}
+    .subtitle{margin:8px 0 0; color:#dbeafe; font-size:16px}
+    .content{padding:22px}
+    .start-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0 18px;}
+    .field{border:1px solid var(--border); border-radius:14px; padding:10px 12px; background:#f8fbff}
+    label{font-size:14px; color:var(--muted); display:block; margin-bottom:4px; font-weight:700}
+    input{width:100%; border:0; outline:0; font-size:16px; background:transparent; color:var(--ink); font-weight:700;}
+    .hint{background:var(--soft); border:1px solid #bfdbfe; color:#1e40af; border-radius:14px; padding:12px 14px; font-weight:700;}
+    .btn{border:0; border-radius:12px; padding:11px 16px; font-size:16px; font-weight:900; cursor:pointer}
+    .btn.primary{background:var(--primary); color:#fff}
+    .btn.primary:hover{background:var(--primary-dark)}
+    .btn.secondary{background:#f1f5f9; color:#334155; border:1px solid #e2e8f0}
+    .btn.secondary:hover{background:#e2e8f0}
+    .btn:disabled{opacity:.55; cursor:not-allowed}
+    #quizPanel,#resultPanel{display:none}
+    .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:14px}
+    .progress-wrap{flex:1 1 260px}
+    .progress-label{display:flex; justify-content:space-between; font-size:14px; color:var(--muted); margin-bottom:6px; font-weight:700}
+    .progress{height:12px; border-radius:999px; background:#e2e8f0; overflow:hidden}
+    .bar{height:100%; width:0%; background:linear-gradient(90deg,var(--primary),#60a5fa)}
+    .score-pill{background:var(--soft); border:1px solid #bfdbfe; color:#1e40af; border-radius:999px; padding:8px 14px; font-weight:900}
+    .q-card{border:1px solid var(--border); border-radius:18px; padding:18px; background:#fff}
+    .section-tag{font-size:13px; color:#475569; font-weight:800; margin-bottom:6px}
+    .q-num{color:var(--primary); font-weight:900; margin-bottom:8px}
+    .q-text{font-size:21px; margin:0 0 14px; font-weight:900}
+    .choices{display:grid; gap:10px}
+    .choice{display:flex; gap:10px; text-align:right; width:100%; border:1px solid var(--border); background:#fff; border-radius:14px; padding:11px 13px; font-size:17px; cursor:pointer}
+    .choice:hover{background:#f8fbff; border-color:#93c5fd}
+    .choice.selected{background:#eff6ff; border-color:var(--primary)}
+    .choice.correct{background:#f0fdf4; border-color:#86efac}
+    .choice.wrong{background:#fef2f2; border-color:#fecaca}
+    .mark{width:24px; height:24px; border-radius:50%; border:2px solid #cbd5e1; display:inline-flex; align-items:center; justify-content:center; font-weight:900; flex:0 0 auto; margin-top:2px}
+    .choice.correct .mark{border-color:var(--ok); color:var(--ok)}
+    .choice.wrong .mark{border-color:var(--bad); color:var(--bad)}
+    .feedback{margin-top:12px; padding:10px 12px; border-radius:12px; display:none; font-weight:700}
+    .feedback.ok{display:block; background:#ecfdf5; color:#166534; border:1px solid #bbf7d0}
+    .feedback.bad{display:block; background:#fff7ed; color:#9a3412; border:1px solid #fed7aa}
+    .actions{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .result-head{text-align:center}
+    .big-score{font-size:54px; color:var(--primary); margin:8px 0; font-weight:900}
+    .grade{display:inline-block; border-radius:999px; padding:8px 14px; font-weight:900; margin-bottom:12px}
+    .excellent{background:#ecfdf5;color:#166534;border:1px solid #bbf7d0}
+    .good{background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe}
+    .needs{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa}
+    .review{display:grid; gap:10px; margin-top:14px}
+    .item{border:1px solid var(--border); border-radius:12px; padding:11px; background:#fff}
+    .writing{margin-top:18px; border:1px dashed #9fb3d9; border-radius:14px; padding:12px}
+    .writing h3{margin:0 0 10px; color:#1e40af}
+    .writing-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .footer-note{text-align:center; color:var(--muted); font-size:13px; margin-top:12px}
+    @media(max-width:760px){
+      .start-grid,.writing-grid{grid-template-columns:1fr}
+      .q-text{font-size:19px}
+      .content,header{padding:18px}
     }
   </style>
 </head>
 <body>
-  <main class="page">
-    <header class="header">
-      <div class="header-top">
-        <div>إعداد منسقة الوعي الفكري / معالي بنت إبراهيم المزين</div>
-        <div>إشراف مدير المدرسة الخامسة الابتدائية بالظهران / مشاعل بنت نائف العتيبي</div>
-      </div>
-      <h1>اختبار الفرق بين التاء المربوطة (ـة) والهاء (ـه)</h1>
-      <p class="subtitle">نموذج اختباري احترافي مميز لمعلمات المرحلة الابتدائية.</p>
-    </header>
+  <main class="wrap">
+    <section class="card">
+      <header>
+        <div class="credits">
+          <div>إعداد منسقة الوعي الفكري / معالي بنت إبراهيم المزين</div>
+          <div>إشراف مدير المدرسة الخامسة الابتدائية بالظهران / مشاعل بنت نائف العتيبي</div>
+        </div>
+        <h1>اختبار الفرق بين التاء المربوطة (ـة) والهاء (ـه)</h1>
+        <p class="subtitle">اختبار تفاعلي احترافي لمعلمات المرحلة الابتدائية مع عرض النتائج والإجابات الصحيحة والخاطئة.</p>
+      </header>
 
-    <section class="content">
-      <div class="student-data">
-        <div class="data-box">الاسم: ____________________</div>
-        <div class="data-box">التاريخ: ____________________</div>
-      </div>
-
-      <div class="instructions">
-        التعليمات: اختري الحرف الصحيح في نهاية الكلمة: (ـة / ـه)، مع مراعاة المعنى والسياق اللغوي.
-      </div>
-
-      <section class="section">
-        <h2 class="section-title">✦ السؤال الأول: اختري الشكل الصحيح للكلمات بين القوسين من خلال السياق:</h2>
-        <ol>
-          <li>تم إعداد خطـــ(ـة / ـه) استراتيجية شاملـ (ـة / ـه)، تضمنت أهدافًا واضحـ (ـة / ـه)، وآليات تنفيذ دقيقة، ومؤشرات لقياس الأداء، وخططًا بديلة للطوارئ.</li>
-          <li>ألقى المُحاضر كلمـــ(ـة / ـه) ثرية، اشتملت على أمثلة واقعيـ (ـة / ـه)، وتحليلات عميقة، وربطٍ بين النظريـ (ـة / ـه) والتطبيق، مما جذب انتباه الحضور.</li>
-          <li>تعتمد جودة المنتج على دقـــ(ـة / ـه) التصنيع، واختيار المواد، ومتابعـ (ـة / ـه) مراحل الإنتاج، والالتزام بالمعايير المعتمد ( ة / ه ).</li>
-          <li>حافظت المؤسســـ(ـة / ـه) على سمعتها من خلال الالتزام بالقيم المهنية، وتقديم خدمات عالية الجود ( ة / ه )، والاستجابـ (ـة / ـه) لمتطلبات العملاء.</li>
-          <li>تحتاج القيـــاد(ـة / ـه) الناجحة إلى رؤية واضحـ (ـة / ـه)، وقدر ( ة / ه ) على اتخاذ القرار، ومهارات تواصل فعّالة، وإدارة حكيمة للموارد.</li>
-        </ol>
+      <section class="content" id="startPanel">
+        <div class="hint">التعليمات: أكملي بياناتك أولًا، ثم اضغطي «بدء الاختبار». ستظهر الأسئلة على شكل بطاقات متتالية مع نتيجة تفصيلية في النهاية.</div>
+        <div class="start-grid">
+          <div class="field">
+            <label for="testerName">الاسم</label>
+            <input id="testerName" placeholder="اكتبي الاسم هنا" />
+          </div>
+          <div class="field">
+            <label for="quizDate">التاريخ</label>
+            <input id="quizDate" />
+          </div>
+        </div>
+        <button class="btn primary" id="startBtn" disabled>بدء الاختبار</button>
       </section>
 
-      <section class="section">
-        <h2 class="section-title">✦ السؤال الثاني: صحّحي الخطأ في الكلمات الواردة بالعبارات الآتية:</h2>
-        <ol>
-          <li>اعتمدت الدراسه على منهج علمي دقيق في جمع البيانات وتحليلها واستخلاص النتائج.<span class="answer-line">التصحيح: ______________________________________</span></li>
-          <li>تتميز اللغه العربية بثراء مفرداتها ودقة تعبيراتها وعمق دلالاتها.<span class="answer-line">التصحيح: ______________________________________</span></li>
-          <li>تساهم الخبره العملية في تطوير المهارات وتعزيز القدرة على حل المشكلات.<span class="answer-line">التصحيح: ______________________________________</span></li>
-          <li>تهدف الخطه إلى تحسين مستوى الأداء ورفع كفاءة العمل في جميع الأقسام.<span class="answer-line">التصحيح: ______________________________________</span></li>
-          <li>تعتمد الصناعه الحديثة على الابتكار والتقنيات المتقدمة في مختلف المجالات.<span class="answer-line">التصحيح: ______________________________________</span></li>
-        </ol>
-      </section>
+      <section class="content" id="quizPanel">
+        <div class="topbar">
+          <div class="progress-wrap">
+            <div class="progress-label">
+              <span id="progressText">السؤال 1 من 1</span>
+              <span id="percentText">0%</span>
+            </div>
+            <div class="progress"><div class="bar" id="bar"></div></div>
+          </div>
+          <div class="score-pill" id="liveScore">الدرجة: 0 / 0</div>
+        </div>
 
-      <section class="section">
-        <h2 class="section-title">✦ السؤال الثالث: صنّفي الكلمات التالية حسب النهاية (ـة / ـه):</h2>
-        <p class="words-list">الكلمات: قيمه – مهاره – دقه – وجهه – نتيجه – انتباهه – حكمه – بيئه – مجاله – معرفه</p>
-        <div class="classification">
-          <div class="class-box">
-            <h4>كلمات تنتهي بتاء مربوطة (ـة):</h4>
-            <div class="answer-line"></div>
-            <div class="answer-line"></div>
-          </div>
-          <div class="class-box">
-            <h4>كلمات تنتهي بهاء (ـه):</h4>
-            <div class="answer-line"></div>
-            <div class="answer-line"></div>
-          </div>
+        <div class="q-card">
+          <div class="section-tag" id="sectionTag"></div>
+          <div class="q-num" id="qNum"></div>
+          <p class="q-text" id="qText"></p>
+          <div class="choices" id="choices"></div>
+          <div class="feedback" id="feedback"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn secondary" id="prevBtn">السابق</button>
+          <button class="btn primary" id="nextBtn">التالي</button>
         </div>
       </section>
 
-      <section class="section">
-        <h2 class="section-title">✦ السؤال الرابع: أكملي الفراغ بالكلمة الصحيحة:</h2>
-        <ol>
-          <li>تعتمد الإدارة الناجحة على وضوح الرؤيـــ(<span class="inline-blank"></span>) وتنظيم الأولويات.</li>
-          <li>تتطلب المهام الدقيقـــ(<span class="inline-blank"></span>) تركيزًا عاليًا وخبرة متراكمة.</li>
-          <li>ساهمت البيئـــ(<span class="inline-blank"></span>) المناسبة في تحسين جودة العمل.</li>
-          <li>تُبنى الثقافـــ(<span class="inline-blank"></span>) على القيم والمعرفة والتجارب.</li>
-          <li>تحتاج المدرسـ(<span class="inline-blank"></span>) إلى تطوير مستمر لمواكبة التغيرات.</li>
-        </ol>
-      </section>
+      <section class="content" id="resultPanel">
+        <div class="result-head">
+          <h2>نتيجة الاختبار</h2>
+          <p id="resultName"></p>
+          <div class="big-score" id="finalScore"></div>
+          <div class="grade" id="grade"></div>
+          <p id="resultMsg"></p>
+          <button class="btn secondary" id="retryBtn">إعادة المحاولة</button>
+        </div>
 
-      <section class="section">
-        <h2 class="section-title">✦ السؤال الخامس: اكتبي 6 كلمات من اختيارك:</h2>
-        <ul>
-          <li>ثلاث كلمات تنتهي بـ (ـة)</li>
-          <li>ثلاث كلمات تنتهي بـ (ـه)</li>
-        </ul>
-        <p>(ـة): ____________________ / ____________________ / ____________________</p>
-        <p>(ـه): ____________________ / ____________________ / ____________________</p>
-      </section>
+        <div class="writing">
+          <h3>نشاط كتابي (السؤال الخامس - غير محسوب في الدرجة)</h3>
+          <div class="writing-grid">
+            <div class="field"><label>كلمة تنتهي بـ (ـة)</label><input /></div>
+            <div class="field"><label>كلمة تنتهي بـ (ـة)</label><input /></div>
+            <div class="field"><label>كلمة تنتهي بـ (ـة)</label><input /></div>
+            <div class="field"><label>كلمة تنتهي بـ (ـه)</label><input /></div>
+            <div class="field"><label>كلمة تنتهي بـ (ـه)</label><input /></div>
+            <div class="field"><label>كلمة تنتهي بـ (ـه)</label><input /></div>
+          </div>
+        </div>
 
-      <p class="footer-note">تم إعداد النموذج بصياغة أكاديمية دقيقة وتصميم مهني مناسب للاستخدام المدرسي والطباعة.</p>
+        <div class="review" id="review"></div>
+      </section>
     </section>
+
+    <p class="footer-note">نموذج تفاعلي متسلسل: سؤال بعد سؤال، مع تصحيح فوري ومراجعة كاملة عند الانتهاء.</p>
   </main>
+
+  <script>
+    const questions = [
+      {section:'السؤال الأول: اختيار من السياق', q:'تم إعداد خطـــ(ـة / ـه) استراتيجية...', choices:['خطة','خطه'], answer:0, explain:'الصحيح: خطة (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'تم إعداد خطة استراتيجية شاملـ (ـة / ـه).', choices:['شاملة','شامله'], answer:0, explain:'الصحيح: شاملة (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'تضمنت أهدافًا واضحـ (ـة / ـه).', choices:['واضحة','واضحه'], answer:0, explain:'الصحيح: واضحة (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'ألقى المُحاضر كلمـــ(ـة / ـه) ثرية.', choices:['كلمة','كلمه'], answer:0, explain:'الصحيح: كلمة (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'اشتملت على أمثلة واقعيـ (ـة / ـه).', choices:['واقعية','واقعيه'], answer:0, explain:'الصحيح: واقعية (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'وربطٍ بين النظريـ (ـة / ـه) والتطبيق.', choices:['النظرية','النظريه'], answer:0, explain:'الصحيح: النظرية (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'تعتمد جودة المنتج على دقـــ(ـة / ـه) التصنيع.', choices:['دقة','دقه'], answer:0, explain:'الصحيح: دقة (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'... واختيار المواد، ومتابعـ (ـة / ـه) مراحل الإنتاج.', choices:['متابعة','متابعه'], answer:0, explain:'الصحيح: متابعة (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'... والالتزام بالمعايير المعتمد ( ة / ه ).', choices:['المعتمدة','المعتمده'], answer:0, explain:'الصحيح: المعتمدة (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'حافظت المؤسســـ(ـة / ـه) على سمعتها.', choices:['المؤسسة','المؤسسه'], answer:0, explain:'الصحيح: المؤسسة (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'... وتقديم خدمات عالية الجود ( ة / ه ).', choices:['الجودة','الجوده'], answer:0, explain:'الصحيح: الجودة (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'... والاستجابـ (ـة / ـه) لمتطلبات العملاء.', choices:['الاستجابة','الاستجابه'], answer:0, explain:'الصحيح: الاستجابة (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'تحتاج القيـــاد(ـة / ـه) الناجحة...', choices:['القيادة','القياده'], answer:0, explain:'الصحيح: القيادة (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'... إلى رؤية واضحـ (ـة / ـه).', choices:['واضحة','واضحه'], answer:0, explain:'الصحيح: واضحة (تاء مربوطة).'},
+      {section:'السؤال الأول: اختيار من السياق', q:'... وقدر ( ة / ه ) على اتخاذ القرار.', choices:['قدرة','قدره'], answer:0, explain:'الصحيح: قدرة (تاء مربوطة).'},
+
+      {section:'السؤال الثاني: تصحيح الخطأ', q:'ما التصحيح الصحيح لكلمة: الدراسه؟', choices:['الدراسه','الدراسة'], answer:1, explain:'الصحيح: الدراسة.'},
+      {section:'السؤال الثاني: تصحيح الخطأ', q:'ما التصحيح الصحيح لكلمة: اللغه؟', choices:['اللغه','اللغة'], answer:1, explain:'الصحيح: اللغة.'},
+      {section:'السؤال الثاني: تصحيح الخطأ', q:'ما التصحيح الصحيح لكلمة: الخبره؟', choices:['الخبره','الخبرة'], answer:1, explain:'الصحيح: الخبرة.'},
+      {section:'السؤال الثاني: تصحيح الخطأ', q:'ما التصحيح الصحيح لكلمة: الخطه؟', choices:['الخطة','الخطه'], answer:0, explain:'الصحيح: الخطة.'},
+      {section:'السؤال الثاني: تصحيح الخطأ', q:'ما التصحيح الصحيح لكلمة: الصناعه؟', choices:['الصناعة','الصناعه'], answer:0, explain:'الصحيح: الصناعة.'},
+
+      {section:'السؤال الثالث: التصنيف حسب النهاية', q:'صنّفي كلمة «قيمه».', choices:['تنتهي بتاء مربوطة (ـة)','تنتهي بهاء (ـه)'], answer:1, explain:'«قيمه» بهذه الصيغة تنتهي بهاء.'},
+      {section:'السؤال الثالث: التصنيف حسب النهاية', q:'صنّفي كلمة «مهاره».', choices:['تنتهي بتاء مربوطة (ـة)','تنتهي بهاء (ـه)'], answer:1, explain:'«مهاره» بهذه الصيغة تنتهي بهاء.'},
+      {section:'السؤال الثالث: التصنيف حسب النهاية', q:'صنّفي كلمة «دقه».', choices:['تنتهي بتاء مربوطة (ـة)','تنتهي بهاء (ـه)'], answer:1, explain:'«دقه» بهذه الصيغة تنتهي بهاء.'},
+      {section:'السؤال الثالث: التصنيف حسب النهاية', q:'صنّفي كلمة «وجهه».', choices:['تنتهي بتاء مربوطة (ـة)','تنتهي بهاء (ـه)'], answer:1, explain:'«وجهه» تنتهي بهاء.'},
+      {section:'السؤال الثالث: التصنيف حسب النهاية', q:'صنّفي كلمة «نتيجه».', choices:['تنتهي بتاء مربوطة (ـة)','تنتهي بهاء (ـه)'], answer:1, explain:'«نتيجه» بهذه الصيغة تنتهي بهاء.'},
+      {section:'السؤال الثالث: التصنيف حسب النهاية', q:'صنّفي كلمة «انتباهه».', choices:['تنتهي بتاء مربوطة (ـة)','تنتهي بهاء (ـه)'], answer:1, explain:'«انتباهه» تنتهي بهاء (ضمير).'},
+      {section:'السؤال الثالث: التصنيف حسب النهاية', q:'صنّفي كلمة «حكمه».', choices:['تنتهي بتاء مربوطة (ـة)','تنتهي بهاء (ـه)'], answer:1, explain:'«حكمه» بهذه الصيغة تنتهي بهاء.'},
+      {section:'السؤال الثالث: التصنيف حسب النهاية', q:'صنّفي كلمة «بيئه».', choices:['تنتهي بتاء مربوطة (ـة)','تنتهي بهاء (ـه)'], answer:1, explain:'«بيئه» بهذه الصيغة تنتهي بهاء.'},
+      {section:'السؤال الثالث: التصنيف حسب النهاية', q:'صنّفي كلمة «مجاله».', choices:['تنتهي بتاء مربوطة (ـة)','تنتهي بهاء (ـه)'], answer:1, explain:'«مجاله» تنتهي بهاء (ضمير).'},
+      {section:'السؤال الثالث: التصنيف حسب النهاية', q:'صنّفي كلمة «معرفه».', choices:['تنتهي بتاء مربوطة (ـة)','تنتهي بهاء (ـه)'], answer:1, explain:'«معرفه» بهذه الصيغة تنتهي بهاء.'},
+
+      {section:'السؤال الرابع: إكمال الفراغ', q:'تعتمد الإدارة الناجحة على وضوح الرؤيـــ(   ).', choices:['ة','ه'], answer:0, explain:'الصحيح: الرؤية.'},
+      {section:'السؤال الرابع: إكمال الفراغ', q:'تتطلب المهام الدقيقـــ(   ) تركيزًا عاليًا.', choices:['ة','ه'], answer:0, explain:'الصحيح: الدقيقة.'},
+      {section:'السؤال الرابع: إكمال الفراغ', q:'ساهمت البيئـــ(   ) المناسبة في تحسين جودة العمل.', choices:['ة','ه'], answer:0, explain:'الصحيح: البيئة.'},
+      {section:'السؤال الرابع: إكمال الفراغ', q:'تُبنى الثقافـــ(   ) على القيم والمعرفة.', choices:['ة','ه'], answer:0, explain:'الصحيح: الثقافة.'},
+      {section:'السؤال الرابع: إكمال الفراغ', q:'تحتاج المدرسـ(   ) إلى تطوير مستمر.', choices:['ة','ه'], answer:0, explain:'الصحيح: المدرسة.'}
+    ];
+
+    let current = 0;
+    let answers = Array(questions.length).fill(null);
+
+    const testerName = document.getElementById('testerName');
+    const quizDate = document.getElementById('quizDate');
+    const startBtn = document.getElementById('startBtn');
+    const startPanel = document.getElementById('startPanel');
+    const quizPanel = document.getElementById('quizPanel');
+    const resultPanel = document.getElementById('resultPanel');
+
+    const sectionTag = document.getElementById('sectionTag');
+    const qNum = document.getElementById('qNum');
+    const qText = document.getElementById('qText');
+    const choicesEl = document.getElementById('choices');
+    const feedback = document.getElementById('feedback');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressText = document.getElementById('progressText');
+    const percentText = document.getElementById('percentText');
+    const bar = document.getElementById('bar');
+    const liveScore = document.getElementById('liveScore');
+
+    const resultName = document.getElementById('resultName');
+    const finalScore = document.getElementById('finalScore');
+    const grade = document.getElementById('grade');
+    const resultMsg = document.getElementById('resultMsg');
+    const review = document.getElementById('review');
+    const retryBtn = document.getElementById('retryBtn');
+
+    quizDate.value = new Date().toLocaleDateString('ar-SA');
+
+    testerName.addEventListener('input', () => {
+      startBtn.disabled = testerName.value.trim().length < 2;
+    });
+
+    startBtn.addEventListener('click', () => {
+      startPanel.style.display = 'none';
+      quizPanel.style.display = 'block';
+      render();
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+
+    function score(){
+      return answers.reduce((sum,a,i)=>sum + (a === questions[i].answer ? 1 : 0), 0);
+    }
+
+    function render(){
+      const item = questions[current];
+      sectionTag.textContent = item.section;
+      qNum.textContent = `السؤال ${current + 1}`;
+      qText.textContent = item.q;
+      choicesEl.innerHTML = '';
+      feedback.className = 'feedback';
+      feedback.textContent = '';
+
+      item.choices.forEach((choice, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'choice';
+        const selected = answers[current] === idx;
+        btn.innerHTML = `<span class="mark">${selected ? '•' : ''}</span><span>${choice}</span>`;
+
+        if (answers[current] !== null) {
+          if (idx === item.answer) btn.classList.add('correct');
+          if (selected && idx !== item.answer) btn.classList.add('wrong');
+        } else if (selected) {
+          btn.classList.add('selected');
+        }
+
+        btn.onclick = () => {
+          answers[current] = idx;
+          render();
+        };
+        choicesEl.appendChild(btn);
+      });
+
+      if (answers[current] !== null) {
+        const ok = answers[current] === item.answer;
+        feedback.className = 'feedback ' + (ok ? 'ok' : 'bad');
+        feedback.textContent = (ok ? '✅ إجابة صحيحة. ' : '❌ إجابة غير صحيحة. ') + item.explain;
+      }
+
+      prevBtn.disabled = current === 0;
+      nextBtn.textContent = current === questions.length - 1 ? 'عرض النتيجة' : 'التالي';
+
+      const answered = answers.filter(x => x !== null).length;
+      const pct = Math.round((answered / questions.length) * 100);
+      bar.style.width = pct + '%';
+      progressText.textContent = `السؤال ${current + 1} من ${questions.length}`;
+      percentText.textContent = pct + '%';
+      liveScore.textContent = `الدرجة: ${score()} / ${questions.length}`;
+    }
+
+    prevBtn.onclick = () => {
+      if (current > 0) {
+        current--;
+        render();
+      }
+    };
+
+    nextBtn.onclick = () => {
+      if (current === questions.length - 1) {
+        showResult();
+      } else {
+        current++;
+        render();
+      }
+    };
+
+    function showResult(){
+      const s = score();
+      const pct = Math.round((s / questions.length) * 100);
+      quizPanel.style.display = 'none';
+      resultPanel.style.display = 'block';
+      resultName.textContent = `الاسم: ${testerName.value.trim()} | التاريخ: ${quizDate.value}`;
+      finalScore.textContent = `${s} / ${questions.length}`;
+
+      grade.className = 'grade';
+      if (pct >= 90) {
+        grade.classList.add('excellent');
+        grade.textContent = 'ممتاز';
+        resultMsg.textContent = 'أداء متميز جدًا. إجاباتك دقيقة في معظم البطاقات.';
+      } else if (pct >= 70) {
+        grade.classList.add('good');
+        grade.textContent = 'جيد جدًا';
+        resultMsg.textContent = 'نتيجة جيدة جدًا، راجعي الأخطاء البسيطة لتعزيز الإتقان.';
+      } else {
+        grade.classList.add('needs');
+        grade.textContent = 'يحتاج إلى مراجعة';
+        resultMsg.textContent = 'يفضل مراجعة قاعدة التاء المربوطة والهاء ثم إعادة الاختبار.';
+      }
+
+      review.innerHTML = questions.map((q, i) => {
+        const user = answers[i] === null ? 'لم يتم الاختيار' : q.choices[answers[i]];
+        const correct = q.choices[q.answer];
+        const ok = answers[i] === q.answer;
+        return `<div class="item"><strong>${i + 1}) ${q.q}</strong><br>
+        إجابتك: <span style="font-weight:900;color:${ok ? '#166534' : '#b91c1c'}">${user}</span><br>
+        الإجابة الصحيحة: <span style="font-weight:900">${correct}</span><br>
+        <small>${q.explain}</small></div>`;
+      }).join('');
+
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    retryBtn.onclick = () => {
+      current = 0;
+      answers = Array(questions.length).fill(null);
+      resultPanel.style.display = 'none';
+      quizPanel.style.display = 'block';
+      render();
+      window.scrollTo({top:0, behavior:'smooth'});
+    };
+  </script>
 </body>
 </html>
