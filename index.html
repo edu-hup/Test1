@@ -6,24 +6,26 @@
   <title>إعداد منسقة الوعي الفكري / معالي بنت إبراهيم المزين | إشراف مدير المدرسة الخامسة الابتدائية بالظهران / مشاعل بنت نائف العتيبي | اختبار الفرق بين التاء المربوطة والهاء</title>
   <style>
     :root{
-      --bg:#f5f7ff;
+      --bg:#f1f8f7;
       --card:#fff;
-      --ink:#172033;
-      --muted:#64748b;
-      --primary:#2563eb;
-      --primary-dark:#1e40af;
-      --ok:#16a34a;
-      --bad:#dc2626;
-      --border:#dbe4f3;
-      --soft:#eff6ff;
+      --ink:#083b44;
+      --muted:#52757d;
+      --primary:#009688;
+      --primary-dark:#00796b;
+      --secondary:#0f7fb3;
+      --ok:#15a85b;
+      --bad:#e25b50;
+      --gold:#b9a578;
+      --border:#cfe3df;
+      --soft:#e9f5f3;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:"Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
       background:
-        radial-gradient(circle at top right, #dbeafe 0, transparent 30%),
-        radial-gradient(circle at bottom left, #fef3c7 0, transparent 24%),
+        radial-gradient(circle at top right, #dcf5f1 0, transparent 30%),
+        radial-gradient(circle at bottom left, #cde8f6 0, transparent 24%),
         var(--bg);
       color:var(--ink);
       min-height:100vh;
@@ -34,14 +36,32 @@
       background:var(--card);
       border:1px solid var(--border);
       border-radius:22px;
-      box-shadow:0 16px 38px rgba(30,58,138,.12);
+      box-shadow:0 16px 38px rgba(5,78,94,.12);
       overflow:hidden;
     }
     header{
-      background:linear-gradient(135deg,#1e3a8a,#2563eb);
+      background:
+        linear-gradient(135deg,#0f7fb3,#009688 72%);
       color:#fff;
       padding:24px;
+      position:relative;
+      border-bottom:6px solid var(--gold);
     }
+    .header-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:8px;
+    }
+    .logo-block{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:#fff;
+    }
+    .logo-block svg{width:120px;height:72px;flex:0 0 auto}
+    .logo-text{font-size:13px;font-weight:700;line-height:1.6}
     .credits{font-weight:700; color:#dbeafe; display:grid; gap:4px; margin-bottom:8px;}
     h1{margin:0; font-size:clamp(23px,3.4vw,35px); line-height:1.4}
     .subtitle{margin:8px 0 0; color:#dbeafe; font-size:16px}
@@ -50,12 +70,12 @@
     .field{border:1px solid var(--border); border-radius:14px; padding:10px 12px; background:#f8fbff}
     label{font-size:14px; color:var(--muted); display:block; margin-bottom:4px; font-weight:700}
     input{width:100%; border:0; outline:0; font-size:16px; background:transparent; color:var(--ink); font-weight:700;}
-    .hint{background:var(--soft); border:1px solid #bfdbfe; color:#1e40af; border-radius:14px; padding:12px 14px; font-weight:700;}
+    .hint{background:var(--soft); border:1px solid #9ad5cb; color:#0b5f66; border-radius:14px; padding:12px 14px; font-weight:700;}
     .btn{border:0; border-radius:12px; padding:11px 16px; font-size:16px; font-weight:900; cursor:pointer}
     .btn.primary{background:var(--primary); color:#fff}
     .btn.primary:hover{background:var(--primary-dark)}
-    .btn.secondary{background:#f1f5f9; color:#334155; border:1px solid #e2e8f0}
-    .btn.secondary:hover{background:#e2e8f0}
+    .btn.secondary{background:#f1f7f7; color:#20525b; border:1px solid #c7ddda}
+    .btn.secondary:hover{background:#e6f1ef}
     .btn:disabled{opacity:.55; cursor:not-allowed}
     #quizPanel,#resultPanel{display:none}
     .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:14px}
@@ -63,40 +83,63 @@
     .progress-label{display:flex; justify-content:space-between; font-size:14px; color:var(--muted); margin-bottom:6px; font-weight:700}
     .progress{height:12px; border-radius:999px; background:#e2e8f0; overflow:hidden}
     .bar{height:100%; width:0%; background:linear-gradient(90deg,var(--primary),#60a5fa)}
-    .score-pill{background:var(--soft); border:1px solid #bfdbfe; color:#1e40af; border-radius:999px; padding:8px 14px; font-weight:900}
+    .score-pill{background:var(--soft); border:1px solid #9ad5cb; color:#0b5f66; border-radius:999px; padding:8px 14px; font-weight:900}
     .q-card{border:1px solid var(--border); border-radius:18px; padding:18px; background:#fff}
     .section-tag{font-size:13px; color:#475569; font-weight:800; margin-bottom:6px}
     .q-num{color:var(--primary); font-weight:900; margin-bottom:8px}
     .q-text{font-size:21px; margin:0 0 14px; font-weight:900}
     .choices{display:grid; gap:10px}
     .choice{display:flex; gap:10px; text-align:right; width:100%; border:1px solid var(--border); background:#fff; border-radius:14px; padding:11px 13px; font-size:17px; cursor:pointer}
-    .choice:hover{background:#f8fbff; border-color:#93c5fd}
-    .choice.selected{background:#eff6ff; border-color:var(--primary)}
-    .choice.correct{background:#f0fdf4; border-color:#86efac}
-    .choice.wrong{background:#fef2f2; border-color:#fecaca}
+    .choice:hover{background:#f4fbfa; border-color:#84cbc0}
+    .choice.selected{background:#effcf9; border-color:var(--primary)}
     .mark{width:24px; height:24px; border-radius:50%; border:2px solid #cbd5e1; display:inline-flex; align-items:center; justify-content:center; font-weight:900; flex:0 0 auto; margin-top:2px}
-    .choice.correct .mark{border-color:var(--ok); color:var(--ok)}
-    .choice.wrong .mark{border-color:var(--bad); color:var(--bad)}
-    .feedback{margin-top:12px; padding:10px 12px; border-radius:12px; display:none; font-weight:700}
-    .feedback.ok{display:block; background:#ecfdf5; color:#166534; border:1px solid #bbf7d0}
-    .feedback.bad{display:block; background:#fff7ed; color:#9a3412; border:1px solid #fed7aa}
     .actions{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-top:14px}
     .result-head{text-align:center}
     .big-score{font-size:54px; color:var(--primary); margin:8px 0; font-weight:900}
     .grade{display:inline-block; border-radius:999px; padding:8px 14px; font-weight:900; margin-bottom:12px}
     .excellent{background:#ecfdf5;color:#166534;border:1px solid #bbf7d0}
-    .good{background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe}
+    .good{background:#eef9f8;color:#0b5f66;border:1px solid #9ad5cb}
     .needs{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa}
     .review{display:grid; gap:10px; margin-top:14px}
     .item{border:1px solid var(--border); border-radius:12px; padding:11px; background:#fff}
+    .stats-grid{display:grid; grid-template-columns:repeat(4,minmax(120px,1fr)); gap:10px; margin:16px 0}
+    .stat{background:linear-gradient(180deg,#ffffff,#f1f8f7); border:1px solid var(--border); border-radius:14px; padding:12px; text-align:center}
+    .stat b{display:block; font-size:26px; color:#0d8f82; line-height:1.1}
+    .stat span{font-size:13px; color:var(--muted); font-weight:700}
+    .charts{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px}
+    .chart-card{border:1px solid var(--border); border-radius:14px; padding:12px; background:#fff}
+    .chart-card h3{margin:0 0 10px; color:#0a6d72; font-size:16px}
+    .chart-wrap{position:relative; width:100%; height:260px}
+    canvas{width:100%; height:100%}
+    .analysis{border:1px solid #9ad5cb; background:#e9f5f3; border-radius:14px; padding:12px; margin-top:12px}
+    .analysis h3{margin:0 0 6px; color:#0a6d72}
+    .print-head{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--border);border-radius:14px;padding:10px 12px;background:#f8fcfb;margin-bottom:10px}
+    .print-head .logo-block{color:#166534}
+    .print-head .logo-text{color:#2f6d3b}
+    .report-actions{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px}
     .writing{margin-top:18px; border:1px dashed #9fb3d9; border-radius:14px; padding:12px}
     .writing h3{margin:0 0 10px; color:#1e40af}
     .writing-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-    .footer-note{text-align:center; color:var(--muted); font-size:13px; margin-top:12px}
+    .footer-note{text-align:center; color:#3c6b72; font-size:13px; margin-top:12px}
     @media(max-width:760px){
+      .header-top{flex-direction:column}
+      .logo-block svg{width:108px}
       .start-grid,.writing-grid{grid-template-columns:1fr}
+      .stats-grid,.charts{grid-template-columns:1fr}
       .q-text{font-size:19px}
       .content,header{padding:18px}
+    }
+    @page { size:A4; margin:12mm; }
+    @media print{
+      body{background:#fff}
+      .wrap{width:100%; margin:0; padding:0}
+      .card{box-shadow:none; border:0}
+      header,#startPanel,#quizPanel,.footer-note,#retryBtn,.report-actions .btn.secondary{display:none !important}
+      #resultPanel{display:block !important}
+      .content{padding:0}
+      .print-head{gap:8mm;border:0;border-bottom:1px solid var(--gold);border-radius:0;padding:0 0 4mm;margin-bottom:4mm}
+      .item,.chart-card,.stat,.analysis,.writing{break-inside:avoid}
+      .charts{grid-template-columns:1fr 1fr}
     }
   </style>
 </head>
@@ -104,16 +147,36 @@
   <main class="wrap">
     <section class="card">
       <header>
-        <div class="credits">
-          <div>إعداد منسقة الوعي الفكري / معالي بنت إبراهيم المزين</div>
-          <div>إشراف مدير المدرسة الخامسة الابتدائية بالظهران / مشاعل بنت نائف العتيبي</div>
+        <div class="header-top">
+          <div class="logo-block">
+            <svg viewBox="0 0 240 140" aria-label="شعار وزارة التعليم - أبيض" role="img">
+              <g fill="#fff" opacity=".95">
+                <circle cx="18" cy="26" r="8"/><circle cx="40" cy="20" r="7"/><circle cx="62" cy="16" r="6"/><circle cx="84" cy="14" r="5"/><circle cx="106" cy="14" r="5"/>
+                <circle cx="20" cy="48" r="7"/><circle cx="42" cy="43" r="6"/><circle cx="64" cy="38" r="6"/><circle cx="86" cy="36" r="5"/><circle cx="108" cy="36" r="5"/>
+                <circle cx="20" cy="70" r="6"/><circle cx="42" cy="66" r="6"/><circle cx="64" cy="62" r="5"/><circle cx="86" cy="60" r="5"/><circle cx="108" cy="60" r="5"/>
+                <circle cx="220" cy="26" r="8"/><circle cx="198" cy="20" r="7"/><circle cx="176" cy="16" r="6"/><circle cx="154" cy="14" r="5"/><circle cx="132" cy="14" r="5"/>
+                <circle cx="218" cy="48" r="7"/><circle cx="196" cy="43" r="6"/><circle cx="174" cy="38" r="6"/><circle cx="152" cy="36" r="5"/><circle cx="130" cy="36" r="5"/>
+                <circle cx="218" cy="70" r="6"/><circle cx="196" cy="66" r="6"/><circle cx="174" cy="62" r="5"/><circle cx="152" cy="60" r="5"/><circle cx="130" cy="60" r="5"/>
+              </g>
+              <rect x="118" y="12" width="4" height="66" fill="#fff"/>
+              <text x="120" y="106" fill="#fff" text-anchor="middle" font-size="24" font-family="Tajawal">وزارة التعليم</text>
+            </svg>
+            <div class="logo-text">
+              <div>المدرسة الخامسة الابتدائية بالظهران</div>
+              <div>قسم الوعي الفكري</div>
+            </div>
+          </div>
+          <div class="credits">
+            <div>إعداد منسقة الوعي الفكري / معالي بنت إبراهيم المزين</div>
+            <div>إشراف مدير المدرسة الخامسة الابتدائية بالظهران / مشاعل بنت نائف العتيبي</div>
+          </div>
         </div>
         <h1>اختبار الفرق بين التاء المربوطة (ـة) والهاء (ـه)</h1>
-        <p class="subtitle">اختبار تفاعلي احترافي لمعلمات المرحلة الابتدائية مع عرض النتائج والإجابات الصحيحة والخاطئة.</p>
+        <p class="subtitle">اختبار تفاعلي احترافي بدون تصحيح فوري، مع تقرير نهائي شامل ورسوم بيانية قابلة للطباعة.</p>
       </header>
 
       <section class="content" id="startPanel">
-        <div class="hint">التعليمات: أكملي بياناتك أولًا، ثم اضغطي «بدء الاختبار». ستظهر الأسئلة على شكل بطاقات متتالية مع نتيجة تفصيلية في النهاية.</div>
+        <div class="hint">التعليمات: أكملي بياناتك أولًا، ثم اضغطي «بدء الاختبار». لن تظهر صحة الإجابة أثناء الاختبار، وستظهر النتيجة والتحليل الكامل فقط بعد الانتهاء.</div>
         <div class="start-grid">
           <div class="field">
             <label for="testerName">الاسم</label>
@@ -136,7 +199,7 @@
             </div>
             <div class="progress"><div class="bar" id="bar"></div></div>
           </div>
-          <div class="score-pill" id="liveScore">الدرجة: 0 / 0</div>
+          <div class="score-pill" id="liveScore">تمت الإجابة: 0 / 0</div>
         </div>
 
         <div class="q-card">
@@ -144,7 +207,6 @@
           <div class="q-num" id="qNum"></div>
           <p class="q-text" id="qText"></p>
           <div class="choices" id="choices"></div>
-          <div class="feedback" id="feedback"></div>
         </div>
 
         <div class="actions">
@@ -154,14 +216,51 @@
       </section>
 
       <section class="content" id="resultPanel">
+        <div class="print-head">
+          <div class="logo-block">
+            <svg viewBox="0 0 240 140" aria-label="شعار وزارة التعليم - أخضر" role="img">
+              <g fill="#0f9d8a" opacity=".95">
+                <circle cx="18" cy="26" r="8"/><circle cx="40" cy="20" r="7"/><circle cx="62" cy="16" r="6"/><circle cx="84" cy="14" r="5"/><circle cx="106" cy="14" r="5"/>
+                <circle cx="20" cy="48" r="7"/><circle cx="42" cy="43" r="6"/><circle cx="64" cy="38" r="6"/><circle cx="86" cy="36" r="5"/><circle cx="108" cy="36" r="5"/>
+                <circle cx="20" cy="70" r="6"/><circle cx="42" cy="66" r="6"/><circle cx="64" cy="62" r="5"/><circle cx="86" cy="60" r="5"/><circle cx="108" cy="60" r="5"/>
+                <circle cx="220" cy="26" r="8"/><circle cx="198" cy="20" r="7"/><circle cx="176" cy="16" r="6"/><circle cx="154" cy="14" r="5"/><circle cx="132" cy="14" r="5"/>
+                <circle cx="218" cy="48" r="7"/><circle cx="196" cy="43" r="6"/><circle cx="174" cy="38" r="6"/><circle cx="152" cy="36" r="5"/><circle cx="130" cy="36" r="5"/>
+                <circle cx="218" cy="70" r="6"/><circle cx="196" cy="66" r="6"/><circle cx="174" cy="62" r="5"/><circle cx="152" cy="60" r="5"/><circle cx="130" cy="60" r="5"/>
+              </g>
+              <rect x="118" y="12" width="4" height="66" fill="#2f6d3b"/>
+              <text x="120" y="106" fill="#2f6d3b" text-anchor="middle" font-size="24" font-family="Tajawal">وزارة التعليم</text>
+            </svg>
+            <div class="logo-text">
+              <div>المدرسة الخامسة الابتدائية بالظهران</div>
+              <div>قسم الوعي الفكري</div>
+            </div>
+          </div>
+          <div style="font-weight:800;color:#0a6d72">تقرير نتيجة الاختبار</div>
+        </div>
         <div class="result-head">
           <h2>نتيجة الاختبار</h2>
           <p id="resultName"></p>
           <div class="big-score" id="finalScore"></div>
           <div class="grade" id="grade"></div>
           <p id="resultMsg"></p>
-          <button class="btn secondary" id="retryBtn">إعادة المحاولة</button>
+          <div class="report-actions">
+            <button class="btn primary" id="printBtn">طباعة / حفظ PDF (A4)</button>
+            <button class="btn secondary" id="retryBtn">إعادة المحاولة</button>
+          </div>
         </div>
+
+        <section class="stats-grid" id="statsGrid"></section>
+        <section class="charts">
+          <article class="chart-card">
+            <h3>توزيع الإجابات</h3>
+            <div class="chart-wrap"><canvas id="distributionChart"></canvas></div>
+          </article>
+          <article class="chart-card">
+            <h3>الأداء حسب قسم الاختبار</h3>
+            <div class="chart-wrap"><canvas id="sectionChart"></canvas></div>
+          </article>
+        </section>
+        <section class="analysis" id="analysis"></section>
 
         <div class="writing">
           <h3>نشاط كتابي (السؤال الخامس - غير محسوب في الدرجة)</h3>
@@ -179,7 +278,7 @@
       </section>
     </section>
 
-    <p class="footer-note">نموذج تفاعلي متسلسل: سؤال بعد سؤال، مع تصحيح فوري ومراجعة كاملة عند الانتهاء.</p>
+    <p class="footer-note">نموذج تفاعلي متسلسل: سؤال بعد سؤال، دون كشف صحة الإجابة أثناء الاختبار، مع تقرير نهائي كامل.</p>
   </main>
 
   <script>
@@ -238,7 +337,6 @@
     const qNum = document.getElementById('qNum');
     const qText = document.getElementById('qText');
     const choicesEl = document.getElementById('choices');
-    const feedback = document.getElementById('feedback');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const progressText = document.getElementById('progressText');
@@ -252,6 +350,11 @@
     const resultMsg = document.getElementById('resultMsg');
     const review = document.getElementById('review');
     const retryBtn = document.getElementById('retryBtn');
+    const printBtn = document.getElementById('printBtn');
+    const statsGrid = document.getElementById('statsGrid');
+    const analysis = document.getElementById('analysis');
+    const distributionChart = document.getElementById('distributionChart');
+    const sectionChart = document.getElementById('sectionChart');
 
     quizDate.value = new Date().toLocaleDateString('ar-SA');
 
@@ -276,8 +379,6 @@
       qNum.textContent = `السؤال ${current + 1}`;
       qText.textContent = item.q;
       choicesEl.innerHTML = '';
-      feedback.className = 'feedback';
-      feedback.textContent = '';
 
       item.choices.forEach((choice, idx) => {
         const btn = document.createElement('button');
@@ -285,10 +386,7 @@
         const selected = answers[current] === idx;
         btn.innerHTML = `<span class="mark">${selected ? '•' : ''}</span><span>${choice}</span>`;
 
-        if (answers[current] !== null) {
-          if (idx === item.answer) btn.classList.add('correct');
-          if (selected && idx !== item.answer) btn.classList.add('wrong');
-        } else if (selected) {
+        if (selected) {
           btn.classList.add('selected');
         }
 
@@ -299,12 +397,6 @@
         choicesEl.appendChild(btn);
       });
 
-      if (answers[current] !== null) {
-        const ok = answers[current] === item.answer;
-        feedback.className = 'feedback ' + (ok ? 'ok' : 'bad');
-        feedback.textContent = (ok ? '✅ إجابة صحيحة. ' : '❌ إجابة غير صحيحة. ') + item.explain;
-      }
-
       prevBtn.disabled = current === 0;
       nextBtn.textContent = current === questions.length - 1 ? 'عرض النتيجة' : 'التالي';
 
@@ -313,7 +405,7 @@
       bar.style.width = pct + '%';
       progressText.textContent = `السؤال ${current + 1} من ${questions.length}`;
       percentText.textContent = pct + '%';
-      liveScore.textContent = `الدرجة: ${score()} / ${questions.length}`;
+      liveScore.textContent = `تمت الإجابة: ${answered} / ${questions.length}`;
     }
 
     prevBtn.onclick = () => {
@@ -335,6 +427,9 @@
     function showResult(){
       const s = score();
       const pct = Math.round((s / questions.length) * 100);
+      const answered = answers.filter(x => x !== null).length;
+      const wrong = answered - s;
+      const unanswered = questions.length - answered;
       quizPanel.style.display = 'none';
       resultPanel.style.display = 'block';
       resultName.textContent = `الاسم: ${testerName.value.trim()} | التاريخ: ${quizDate.value}`;
@@ -355,6 +450,28 @@
         resultMsg.textContent = 'يفضل مراجعة قاعدة التاء المربوطة والهاء ثم إعادة الاختبار.';
       }
 
+      statsGrid.innerHTML = `
+        <article class="stat"><b>${pct}%</b><span>نسبة الإنجاز الصحيحة</span></article>
+        <article class="stat"><b>${s}</b><span>إجابات صحيحة</span></article>
+        <article class="stat"><b>${wrong}</b><span>إجابات خاطئة</span></article>
+        <article class="stat"><b>${unanswered}</b><span>غير مجابة</span></article>
+      `;
+
+      const completionPct = Math.round((answered / questions.length) * 100);
+      const wrongPct = answered ? Math.round((wrong / answered) * 100) : 0;
+      analysis.innerHTML = `
+        <h3>تحليل النتيجة</h3>
+        <ul>
+          <li>نسبة الإكمال: <b>${completionPct}%</b> (${answered} من ${questions.length}).</li>
+          <li>متوسط الدقة: <b>${pct}%</b> من كامل الاختبار.</li>
+          <li>متوسط الخطأ بين الإجابات المختارة: <b>${wrongPct}%</b>.</li>
+          <li>التوصية: ${pct >= 90 ? 'جاهزية ممتازة واستمرارية بنفس المستوى.' : pct >= 70 ? 'مستوى جيد جدًا مع تحسين النقاط الخاطئة.' : 'تحتاجين إلى مراجعة إضافية قبل إعادة الاختبار.'}</li>
+        </ul>
+      `;
+
+      drawDistributionChart({correct:s, wrong, unanswered});
+      drawSectionChart();
+
       review.innerHTML = questions.map((q, i) => {
         const user = answers[i] === null ? 'لم يتم الاختيار' : q.choices[answers[i]];
         const correct = q.choices[q.answer];
@@ -368,6 +485,123 @@
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
+    function drawDistributionChart(data){
+      const ctx = distributionChart.getContext('2d');
+      const width = distributionChart.width = distributionChart.clientWidth * 2;
+      const height = distributionChart.height = distributionChart.clientHeight * 2;
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.scale(2,2);
+      const w = width / 2;
+      const h = height / 2;
+      ctx.clearRect(0,0,w,h);
+
+      const values = [data.correct, data.wrong, data.unanswered];
+      const labels = ['صحيحة','خاطئة','غير مجابة'];
+      const colors = ['#0f9d8a','#e25b50','#6b7f86'];
+      const total = Math.max(values.reduce((a,b)=>a+b,0),1);
+      let start = -Math.PI / 2;
+      const cx = w * 0.35;
+      const cy = h * 0.5;
+      const r = Math.min(w,h) * 0.29;
+      const ring = r * 0.46;
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, r + 10, 0, Math.PI * 2);
+      ctx.fillStyle = '#f2f8f7';
+      ctx.fill();
+
+      values.forEach((v, i) => {
+        const angle = (v / total) * Math.PI * 2;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, start, start + angle);
+        ctx.arc(cx, cy, r - ring, start + angle, start, true);
+        ctx.closePath();
+        ctx.fillStyle = colors[i];
+        ctx.fill();
+        start += angle;
+      });
+
+      ctx.fillStyle = '#0a6d72';
+      ctx.font = '700 15px Tajawal';
+      ctx.textAlign = 'center';
+      ctx.fillText('الدقة العامة', cx, cy - 8);
+      ctx.font = '900 24px Tajawal';
+      const accuracy = Math.round((data.correct / total) * 100);
+      ctx.fillText(`${accuracy}%`, cx, cy + 20);
+      ctx.textAlign = 'start';
+
+      labels.forEach((label, i) => {
+        const y = 34 + i * 44;
+        const percent = Math.round((values[i] / total) * 100);
+        ctx.fillStyle = '#ffffff';
+        ctx.strokeStyle = '#d6e7e4';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(w * 0.58, y - 18, w * 0.36, 30, 10);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = colors[i];
+        ctx.fillRect(w * 0.6, y - 8, 14, 14);
+        ctx.fillStyle = '#11353d';
+        ctx.font = '700 14px Tajawal';
+        ctx.fillText(`${label}: ${values[i]} (${percent}%)`, w * 0.6 + 22, y + 4);
+      });
+    }
+
+    function drawSectionChart(){
+      const ctx = sectionChart.getContext('2d');
+      const width = sectionChart.width = sectionChart.clientWidth * 2;
+      const height = sectionChart.height = sectionChart.clientHeight * 2;
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.scale(2,2);
+      const w = width / 2;
+      const h = height / 2;
+      ctx.clearRect(0,0,w,h);
+
+      const grouped = questions.reduce((acc, q, i) => {
+        if (!acc[q.section]) acc[q.section] = {total:0, correct:0};
+        acc[q.section].total += 1;
+        if (answers[i] === q.answer) acc[q.section].correct += 1;
+        return acc;
+      }, {});
+      const labels = Object.keys(grouped);
+      const barH = 18;
+      const gap = 28;
+      const left = 20;
+      const maxW = w - 210;
+      ctx.textAlign = 'right';
+
+      ctx.fillStyle = '#edf6f4';
+      ctx.fillRect(left, 18, maxW, labels.length * (barH + gap));
+
+      labels.forEach((label, i) => {
+        const y = 26 + i * (barH + gap);
+        const ratio = grouped[label].total ? grouped[label].correct / grouped[label].total : 0;
+        const barW = Math.max(4, Math.round(maxW * ratio));
+        const pct = Math.round(ratio*100);
+        const grad = ctx.createLinearGradient(left, y, left + barW, y);
+        grad.addColorStop(0, '#0f7fb3');
+        grad.addColorStop(1, '#0f9d8a');
+
+        ctx.fillStyle = '#d7e5e3';
+        ctx.beginPath();
+        ctx.roundRect(left, y, maxW, barH, 11);
+        ctx.fill();
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.roundRect(left, y, barW, barH, 11);
+        ctx.fill();
+
+        ctx.fillStyle = '#11353d';
+        ctx.font = '700 12px Tajawal';
+        ctx.fillText(label, left + maxW - 6, y + 13);
+        ctx.fillStyle = '#0d8f82';
+        ctx.font = '900 13px Tajawal';
+        ctx.fillText(`${pct}%`, left - 6, y + 13);
+      });
+      ctx.textAlign = 'start';
+    }
+
     retryBtn.onclick = () => {
       current = 0;
       answers = Array(questions.length).fill(null);
@@ -376,6 +610,8 @@
       render();
       window.scrollTo({top:0, behavior:'smooth'});
     };
+
+    printBtn.onclick = () => window.print();
   </script>
 </body>
 </html>
