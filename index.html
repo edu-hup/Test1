@@ -625,9 +625,13 @@
       const colors = ['#5d9b72','#1d2127','#b5c5b2'];
       const total = Math.max(values.reduce((a,b)=>a+b,0),1);
       let start = -Math.PI / 2;
-      const cx = w * 0.33;
+      const cardPad = 14;
+      const legendW = Math.min(230, w * 0.38);
+      const legendX = w - legendW - cardPad;
+      const donutAreaW = Math.max(180, legendX - cardPad * 2);
+      const cx = cardPad + donutAreaW * 0.52;
       const cy = h * 0.5;
-      const r = Math.min(w,h) * 0.32;
+      const r = Math.min(donutAreaW * 0.42, h * 0.36);
       const ring = r * 0.44;
 
       ctx.beginPath();
@@ -656,22 +660,24 @@
       ctx.textAlign = 'start';
 
       labels.forEach((label, i) => {
-        const y = 40 + i * 48;
+        const y = 48 + i * 58;
         const percent = Math.round((values[i] / total) * 100);
         ctx.fillStyle = '#f9fbf7';
         ctx.strokeStyle = '#d6dfd3';
         ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.roundRect(w * 0.56, y - 19, w * 0.37, 34, 16);
+        ctx.roundRect(legendX, y - 22, legendW, 40, 20);
         ctx.fill();
         ctx.stroke();
         ctx.fillStyle = colors[i];
         ctx.beginPath();
-        ctx.roundRect(w * 0.585, y - 9, 16, 16, 6);
+        ctx.roundRect(legendX + 14, y - 10, 22, 22, 9);
         ctx.fill();
         ctx.fillStyle = '#21302a';
-        ctx.font = '700 15px Tajawal';
-        ctx.fillText(`${label}: ${values[i]} (${percent}%)`, w * 0.585 + 24, y + 4);
+        ctx.font = '700 20px Tajawal';
+        ctx.textAlign = 'right';
+        ctx.fillText(`${label}: ${values[i]} (${percent}%)`, legendX + legendW - 14, y + 5);
+        ctx.textAlign = 'start';
       });
     }
 
@@ -704,22 +710,29 @@
           </tr>`;
         }).join('');
       }
-      const barH = 16;
-      const gap = 42;
-      const left = 36;
-      const maxW = w - 230;
+      const panelX = 18;
+      const panelY = 18;
+      const panelW = w - 36;
+      const panelH = h - 36;
+      const rowGap = 22;
+      const rowH = (panelH - (labels.length + 1) * rowGap) / labels.length;
+      const barH = Math.min(18, Math.max(12, rowH * 0.36));
+      const left = panelX + 28;
+      const rightPad = 26;
+      const maxW = panelW - 56;
       ctx.textAlign = 'right';
 
       ctx.fillStyle = '#eff3ea';
       ctx.beginPath();
-      ctx.roundRect(left - 12, 24, maxW + 24, labels.length * (barH + gap) - 10, 14);
+      ctx.roundRect(panelX, panelY, panelW, panelH, 14);
       ctx.fill();
 
       labels.forEach((label, i) => {
-        const y = 34 + i * (barH + gap);
+        const y = panelY + rowGap + i * (rowH + rowGap) + 20;
         const ratio = grouped[label].total ? grouped[label].correct / grouped[label].total : 0;
         const barW = Math.max(6, Math.round(maxW * ratio));
         const pct = Math.round(ratio*100);
+        const shortLabel = label.includes(':') ? label.split(':').slice(1).join(':').trim() : label;
 
         ctx.fillStyle = '#c8d6c4';
         ctx.beginPath();
@@ -738,11 +751,11 @@
         ctx.fill();
 
         ctx.fillStyle = '#1e2e26';
-        ctx.font = '700 13px Tajawal';
-        ctx.fillText(label, left + maxW - 4, y - 8);
+        ctx.font = '700 17px Tajawal';
+        ctx.fillText(shortLabel, left + maxW - rightPad, y - 12);
         ctx.fillStyle = '#1d2127';
-        ctx.font = '900 26px Tajawal';
-        ctx.fillText(`${pct}%`, left - 8, y + 15);
+        ctx.font = '900 22px Tajawal';
+        ctx.fillText(`${pct}%`, left + maxW - rightPad, y + 34);
       });
       ctx.textAlign = 'start';
     }
