@@ -804,9 +804,13 @@
       return cachedJpgBlob;
     }
 
+    function buildResultFileName(ext = 'jpg'){
+      return `نتيجة-${testerName.value.trim() || 'طالبة'}-${Date.now()}.${ext}`;
+    }
+
     async function exportJpg(){
       const blob = await generateResultJpgBlob();
-      const fileName = `نتيجة-${testerName.value.trim() || 'طالبة'}-${Date.now()}.jpg`;
+      const fileName = buildResultFileName('jpg');
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
       link.download = fileName;
@@ -838,38 +842,68 @@
       }
     };
 
+    function openWhatsappApp(){
+      const phone = '966554260905';
+      const text = encodeURIComponent('تقرير نتيجة الاختبار جاهز للإرسال.');
+      const isMobileUA = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '');
+      if (isMobileUA) {
+        window.location.href = `whatsapp://send?phone=${phone}&text=${text}`;
+        return;
+      }
+      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${text}`, '_blank', 'noopener');
+      window.open(`https://web.whatsapp.com/send?phone=${phone}&text=${text}`, '_blank', 'noopener');
+    }
+
+    function openDefaultEmailClient(){
+      const subject = encodeURIComponent('نتيجة اختبار التاء المربوطة والهاء');
+      const body = encodeURIComponent('مرفق نتيجة الاختبار.');
+      window.location.href = `mailto:mmuzayn7621@moe.gov.sa?subject=${subject}&body=${body}`;
+    }
+
     async function shareWithTarget(target){
-      const {blob, fileName} = await exportJpg();
+      const blob = await generateResultJpgBlob();
+      const fileName = buildResultFileName('jpg');
       const file = new File([blob], fileName, {type:'image/jpeg'});
-      const message = target === 'whatsapp'
-        ? 'تقرير نتيجة الاختبار المرفق. للإرسال إلى الرقم: 966554260905'
-        : 'تقرير نتيجة الاختبار المرفق. البريد المستهدف: mmuzayn7621@moe.gov.sa';
+      const baseText = 'تقرير نتيجة الاختبار';
+      const isWhatsapp = target === 'whatsapp';
+      const shareText = isWhatsapp
+        ? `${baseText} - واتساب`
+        : `${baseText} - بريد إلكتروني`;
 
       if (navigator.canShare && navigator.canShare({files:[file]}) && navigator.share) {
         await navigator.share({
           files:[file],
-          title:'تقرير نتيجة الاختبار',
-          text: message
+          title: baseText,
+          text: shareText
         });
         return;
       }
 
-      if (target === 'whatsapp') {
-        const waUrl = `https://wa.me/966554260905?text=${encodeURIComponent('تم تنزيل صورة النتيجة. يرجى إرفاقها وإرسالها.')}`;
-        window.open(waUrl, '_blank');
+      if (isWhatsapp) {
+        openWhatsappApp();
       } else {
-        const mailUrl = `mailto:mmuzayn7621@moe.gov.sa?subject=${encodeURIComponent('صورة نتيجة الاختبار')}&body=${encodeURIComponent('تم تنزيل صورة النتيجة، وسيتم إرفاقها يدويًا قبل الإرسال.')}`;
-        window.location.href = mailUrl;
+        openDefaultEmailClient();
       }
-      alert('تم تنزيل صورة JPG. إذا لم يدعم المتصفح الإرسال المباشر، أرفقي الصورة يدويًا.');
+
+      alert('هذا المتصفح لا يدعم الإرفاق التلقائي للملفات من داخل الصفحة. تم فتح التطبيق المطلوب مباشرة، ويمكنك الإرسال بعد إرفاق الصورة يدويًا.');
     }
 
     shareWhatsappBtn.onclick = async () => {
-      await shareWithTarget('whatsapp');
+      try {
+        await shareWithTarget('whatsapp');
+      } catch (error) {
+        openWhatsappApp();
+        alert('تعذر الإرسال المباشر الآن، ولكن تم فتح واتساب.');
+      }
     };
 
     shareEmailBtn.onclick = async () => {
-      await shareWithTarget('email');
+      try {
+        await shareWithTarget('email');
+      } catch (error) {
+        openDefaultEmailClient();
+        alert('تعذر الإرسال المباشر الآن، ولكن تم فتح البريد الافتراضي.');
+      }
     };
   </script>
 </body>
